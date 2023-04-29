@@ -2,13 +2,20 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.PrimaryController">
    <children>
-      <TextField fx:id="connectionTxt" layoutX="218.0" layoutY="140.0" />
+      <TextField fx:id="connectionTxt" layoutX="63.0" layoutY="297.0" />
       <TextField fx:id="user" layoutX="226.0" layoutY="254.0" promptText="Usuario" />
       <TextField fx:id="password" layoutX="226.0" layoutY="297.0" promptText="Contraseña" />
       <Button fx:id="login" layoutX="250.0" layoutY="338.0" mnemonicParsing="false" text="Iniciar sesión" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="193.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/MM_Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

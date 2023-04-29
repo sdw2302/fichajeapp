@@ -1,3 +1,4 @@
+-- Datos Base --
 create table empresa(
 	id_empresa int(8),
 	nombre_empresa varchar(30),

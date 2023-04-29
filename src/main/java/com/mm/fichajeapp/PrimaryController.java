@@ -25,11 +25,10 @@ public class PrimaryController {
         java.sql.Connection con = connection.connect();
         if (con != null) {
             // Muestra un mensaje de conexión exitosa
-
+            
             connectionTxt.setText("Conexión exitosa");
             System.out.println("XDD");
         }
-
     }
 
 }
