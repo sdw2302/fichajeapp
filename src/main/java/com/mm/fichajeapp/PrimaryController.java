@@ -1,8 +1,13 @@
 package com.mm.fichajeapp;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+
+import java.io.IOException;
+
 import com.mm.fichajeapp.modelo.Connection;
 
 public class PrimaryController {
@@ -29,6 +34,26 @@ public class PrimaryController {
             connectionTxt.setText("Conexión exitosa");
             System.out.println("XDD");
         }
+    }
+
+    public void login() throws IOException {
+
+        Connection connection;
+
+        //String userConnection = connection.getUSER();
+        //String passwordConnection = connection.getPASSWD();
+
+        if(user.getText().equals("administrador") && password.getText().equals("administrador")) {
+            
+                App.setRoot("secondary");
+        }else{
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error de inicio de sesión");
+            alert.setHeaderText(null);
+            alert.setContentText("El usuario o contraseña son incorrectos.");
+            alert.showAndWait();
+        }
+
     }
 
 }

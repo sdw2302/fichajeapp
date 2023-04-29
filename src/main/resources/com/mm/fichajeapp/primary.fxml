@@ -11,7 +11,7 @@
       <TextField fx:id="connectionTxt" layoutX="63.0" layoutY="297.0" />
       <TextField fx:id="user" layoutX="226.0" layoutY="254.0" promptText="Usuario" />
       <TextField fx:id="password" layoutX="226.0" layoutY="297.0" promptText="Contraseña" />
-      <Button fx:id="login" layoutX="250.0" layoutY="338.0" mnemonicParsing="false" text="Iniciar sesión" />
+      <Button fx:id="login" layoutX="250.0" layoutY="338.0" mnemonicParsing="false" onAction="#login" text="Iniciar sesión" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="193.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/MM_Logo.png" />

@@ -21,4 +21,25 @@ public class Connection {
         }    
         return connection;
     }
+
+    public String getURL() {
+        return this.URL;
+    }
+
+
+    public String getDRIVER() {
+        return this.DRIVER;
+    }
+
+
+    public String getUSER() {
+        return this.USER;
+    }
+
+
+    public String getPASSWD() {
+        return this.PASSWD;
+    }
+
+
 }
