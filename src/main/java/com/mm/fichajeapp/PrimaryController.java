@@ -12,7 +12,6 @@ import com.mm.fichajeapp.modelo.DbConnection;
 
 import java.sql.Connection;
 
-
 public class PrimaryController {
 
     @FXML
@@ -31,36 +30,38 @@ public class PrimaryController {
 
     @FXML
     // private void initialize() {
-    //     Connection connection = new Connection();
-    //     java.sql.Connection con = connection.connect();
-    //     if (con != null) {
-    //         // Muestra un mensaje de conexión exitosa
-            
-    //         connectionTxt.setText("Conexión exitosa");
-    //         System.out.println("XDD");
-    //     }
+    // Connection connection = new Connection();
+    // java.sql.Connection con = connection.connect();
+    // if (con != null) {
+    // // Muestra un mensaje de conexión exitosa
+
+    // connectionTxt.setText("Conexión exitosa");
+    // System.out.println("XDD");
+    // }
     // }
 
     // public void login() throws IOException {
 
-    //     if(user.getText().equals("administrador") && password.getText().equals("administrador")) {
-            
-    //             App.setRoot("secondary");
-    //     }else{
-    //         Alert alert = new Alert(AlertType.ERROR);
-    //         alert.setTitle("Error de inicio de sesión");
-    //         alert.setHeaderText(null);
-    //         alert.setContentText("El usuario o contraseña son incorrectos.");
-    //         alert.showAndWait();
-    //     }
+    // if(user.getText().equals("administrador") &&
+    // password.getText().equals("administrador")) {
+
+    // App.setRoot("secondary");
+    // }else{
+    // Alert alert = new Alert(AlertType.ERROR);
+    // alert.setTitle("Error de inicio de sesión");
+    // alert.setHeaderText(null);
+    // alert.setContentText("El usuario o contraseña son incorrectos.");
+    // alert.showAndWait();
+    // }
 
     // }
 
-    public void login() throws SQLException, IOException{
-        if(!user.getText().equals("") && !password.getText().equals("")){
-            DbConnection conn = connection.iniciarSesion(user.getText(), password.getText());
+    public void login() throws SQLException, IOException {
+        if (!user.getText().equals("") && !password.getText().equals("")) {
+            DbConnection conn = new DbConnection();
+            conn.iniciarSesion(user.getText(), password.getText());
 
-            if (conn != null && !conn.isClosed()) {
+            if (conn.getConnection()) {
                 Alert alerta = new Alert(AlertType.INFORMATION);
                 alerta.setTitle("Inici de sessió correcte");
                 alerta.setHeaderText("Benvingut " + user.getText());
@@ -77,7 +78,7 @@ public class PrimaryController {
                 user.setText("");
                 password.setText("");
             }
-        }else{
+        } else {
             Alert alerta = new Alert(AlertType.INFORMATION);
             alerta.setTitle("Inicio de sessión Incorrecto");
             alerta.setHeaderText("No se ha podido iniciar sessión");
@@ -85,5 +86,5 @@ public class PrimaryController {
             alerta.showAndWait();
         }
     }
-    
+
 }

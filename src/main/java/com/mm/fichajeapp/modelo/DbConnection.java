@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-
 public class DbConnection {
     // bd
     // private final String URL = "jdbc:mysql://localhost/bd_fichaje";//nom bd
@@ -17,28 +16,31 @@ public class DbConnection {
     private static final String URL = "jdbc:mysql://localhost/bd_fichaje";
     private static java.sql.Connection conn = null;
     Alert alerta = new Alert(AlertType.INFORMATION);
-    
+    private boolean connected = false;
 
     // public java.sql.DbConnection connect() {
-    //     java.sql.DbConnection connection = null;
-    //     try {
-    //         Class.forName(DRIVER); 
-    //         connection = DriverManager.getConnection(URL, USER, PASSWD);
-    //     } catch (SQLException | ClassNotFoundException e) {
-    //         System.out.println(e.getMessage());
-    //     }    
-    //     return connection;
+    // java.sql.DbConnection connection = null;
+    // try {
+    // Class.forName(DRIVER);
+    // connection = DriverManager.getConnection(URL, USER, PASSWD);
+    // } catch (SQLException | ClassNotFoundException e) {
+    // System.out.println(e.getMessage());
+    // }
+    // return connection;
     // }
 
-    public static java.sql.Connection iniciarSesion(String USER, String PASSWORD) {
+    public void iniciarSesion(String USER, String PASSWORD) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
+            connected = false;
         }
-        return conn;
+        connected = true;
     }
 
-
+    public boolean getConnection() {
+        return connected;
+    }
 }
