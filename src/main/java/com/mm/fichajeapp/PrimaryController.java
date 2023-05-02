@@ -26,7 +26,7 @@ public class PrimaryController {
 
     DbConnection connection = new DbConnection();
 
-    @FXML
+    
     // private void initialize() {
     // Connection connection = new Connection();
     // java.sql.Connection con = connection.connect();
@@ -54,6 +54,7 @@ public class PrimaryController {
 
     // }
 
+    @FXML
     public void login() throws SQLException, IOException {
         if (!user.getText().equals("") && !password.getText().equals("")) {
             DbConnection conn = new DbConnection();
