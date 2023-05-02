@@ -1,44 +1,43 @@
 package com.mm.fichajeapp.modelo;
 
+//import java.sql.DbConnection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
-public class Connection {
+
+public class DbConnection {
     // bd
-    private final String URL = "jdbc:mysql://localhost/bd_fichaje";//nom bd
-    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final String USER = "administrador";
-    private final String PASSWD = "administrador";
+    // private final String URL = "jdbc:mysql://localhost/bd_fichaje";//nom bd
+    // private final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    // private final String USER = "administrador";
+    // private final String PASSWORD = "administrador";
+
+    private static final String URL = "jdbc:mysql://localhost/bd_fichaje";
+    private static java.sql.Connection conn = null;
+    Alert alerta = new Alert(AlertType.INFORMATION);
     
 
-    public java.sql.Connection connect() {
-        java.sql.Connection connection = null;
+    // public java.sql.DbConnection connect() {
+    //     java.sql.DbConnection connection = null;
+    //     try {
+    //         Class.forName(DRIVER); 
+    //         connection = DriverManager.getConnection(URL, USER, PASSWD);
+    //     } catch (SQLException | ClassNotFoundException e) {
+    //         System.out.println(e.getMessage());
+    //     }    
+    //     return connection;
+    // }
+
+    public static java.sql.Connection iniciarSesion(String USER, String PASSWORD) {
         try {
-            Class.forName(DRIVER); 
-            connection = DriverManager.getConnection(URL, USER, PASSWD);
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println(e.getMessage());
-        }    
-        return connection;
-    }
-
-    public String getURL() {
-        return this.URL;
-    }
-
-
-    public String getDRIVER() {
-        return this.DRIVER;
-    }
-
-
-    public String getUSER() {
-        return this.USER;
-    }
-
-
-    public String getPASSWD() {
-        return this.PASSWD;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+        return conn;
     }
 
 

@@ -58,7 +58,7 @@ public class PrimaryController {
 
     public void login() throws SQLException, IOException{
         if(!user.getText().equals("") && !password.getText().equals("")){
-            DbConnection conn = new connection.iniciarSesion(user.getText(), password.getText());
+            DbConnection conn = connection.iniciarSesion(user.getText(), password.getText());
 
             if (conn != null && !conn.isClosed()) {
                 Alert alerta = new Alert(AlertType.INFORMATION);
