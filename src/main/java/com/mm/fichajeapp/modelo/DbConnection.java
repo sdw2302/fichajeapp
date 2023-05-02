@@ -30,14 +30,15 @@ public class DbConnection {
     // }
 
     public void iniciarSesion(String USER, String PASSWORD) {
+        boolean error = false;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            connected = true;
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
-            connected = false;
+            error = true;
         }
+        connected = error == false ? true : false;
     }
 
     public boolean getConnection() {
