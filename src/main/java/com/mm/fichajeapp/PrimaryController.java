@@ -10,8 +10,6 @@ import java.sql.SQLException;
 
 import com.mm.fichajeapp.modelo.DbConnection;
 
-import java.sql.Connection;
-
 public class PrimaryController {
 
     @FXML

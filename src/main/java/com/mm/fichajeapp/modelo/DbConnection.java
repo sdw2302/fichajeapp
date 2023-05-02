@@ -33,11 +33,11 @@ public class DbConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            connected = true;
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
             connected = false;
         }
-        connected = true;
     }
 
     public boolean getConnection() {
