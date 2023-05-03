@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="514.0" maxWidth="738.0" minHeight="514.0" minWidth="738.0" prefHeight="514.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.SecondaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.SecondaryController">
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="250.0">
          <children>
@@ -18,7 +18,7 @@
             <TextField fx:id="NIF" layoutX="75.0" layoutY="38.0" />
             <ComboBox fx:id="horario" layoutX="75.0" layoutY="100.0" prefWidth="150.0" />
          </children></AnchorPane>
-      <TableView fx:id="tableWorkers" layoutX="267.0" layoutY="6.0" prefHeight="500.0" prefWidth="400.0">
+      <TableView fx:id="tableWorkers" layoutX="273.0" layoutY="11.0" prefHeight="500.0" prefWidth="400.0">
         <columns>
           <TableColumn fx:id="DNI" prefWidth="75.0" text="DNI" />
           <TableColumn fx:id="Nombre" prefWidth="114.0" text="Nombre" />
