@@ -6,12 +6,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class DbConnection {
-    
+
     private static final String URL = "jdbc:mysql://localhost/bd_fichaje";
     private static java.sql.Connection conn = null;
     Alert alerta = new Alert(AlertType.INFORMATION);
     private boolean connected = false;
-
 
     public void iniciarSesion(String USER, String PASSWORD) {
         boolean error = false;
@@ -27,5 +26,9 @@ public class DbConnection {
 
     public boolean getConnection() {
         return connected;
+    }
+
+    public java.sql.Connection getConn() {
+        return conn;
     }
 }
