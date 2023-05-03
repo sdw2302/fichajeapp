@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.mm.fichajeapp.modelo.DataManagement;
 import com.mm.fichajeapp.modelo.Worker;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -21,7 +22,7 @@ public class SecondaryController {
     ComboBox horario;
 
     @FXML
-    TableView tableWorkers;
+    TableView<Worker> tableWorkers;
 
     @FXML
     TableColumn<Worker,String> DNI;
@@ -30,18 +31,26 @@ public class SecondaryController {
     @FXML
     TableColumn<Worker,String> Apellido;
     @FXML
-    TableColumn<Worker,String> Horas_trabajadas;
-
-
+    TableColumn<Worker,Double> Horas_trabajadas;
 
     DataManagement dm = new DataManagement();
 
+    Worker w = new Worker(null, null, null, null);
+
     public void initialize(){
+
+       
+
+        ObservableList<Worker> trabajadores = dm.geTableAstList();
+
+        //ObservableList<Worker> listaTrabajadores = w.todosTrabajadores();
+
+        //DNI.setCellValueFactory(new PropertyValueFactory<>("dni_trabajador"));
+        DNI.setCellValueFactory(new PropertyValueFactory<Worker, String>("dni_trabajador"));
+        Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
+        Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
+        Horas_trabajadas.setCellValueFactory(new PropertyValueFactory<>("horas_fichadas_trabajador"));
+        tableWorkers.setItems(trabajadores);      
         
-        dm.getList();
-
-        DNI.setCellValueFactory(new PropertyValueFactory<>("DNI"));
-
-        tableWorkers.setItems(dm.getList());        
     }
 }

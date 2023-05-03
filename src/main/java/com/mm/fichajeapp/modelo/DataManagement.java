@@ -3,14 +3,17 @@ package com.mm.fichajeapp.modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import com.mm.fichajeapp.modelo.Worker;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class DataManagement {
-    public ObservableList<Worker> getList() {
+
+    public ObservableList<Worker> geTableAstList() {
+
         ObservableList<Worker> trabajadores = FXCollections.observableArrayList();
-        String sql = "select nombre_trabajador, apellido_trabajador, dni_trabajador, horas_fichadas_trabajador from trabajador";
+        String sql = "select dni_trabajador, nombre_trabajador, apellido_trabajador,  horas_fichadas_trabajador from trabajador";
 
         DbConnection conn = new DbConnection();
         try {
@@ -25,4 +28,5 @@ public class DataManagement {
         }
         return trabajadores;
     }
+
 }
