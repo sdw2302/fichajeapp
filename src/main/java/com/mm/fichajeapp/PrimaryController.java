@@ -33,11 +33,11 @@ public class PrimaryController {
             conn.iniciarSesion(user.getText(), password.getText());
 
             if (conn.getConnection()) {
-                Alert alerta = new Alert(AlertType.INFORMATION);
-                alerta.setTitle("Inici de sessió correcte");
-                alerta.setHeaderText("Benvingut " + user.getText());
-                alerta.setContentText("Que tinguis un bon dia!.");
-                alerta.showAndWait();
+                // Alert alerta = new Alert(AlertType.INFORMATION);
+                // alerta.setTitle("Inici de sessió correcte");
+                // alerta.setHeaderText("Benvingut " + user.getText());
+                // alerta.setContentText("Que tinguis un bon dia!.");
+                // alerta.showAndWait();
                 App.setRoot("secondary");
 
             } else {
