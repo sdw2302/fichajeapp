@@ -26,34 +26,6 @@ public class PrimaryController {
 
     DbConnection connection = new DbConnection();
 
-    
-    // private void initialize() {
-    // Connection connection = new Connection();
-    // java.sql.Connection con = connection.connect();
-    // if (con != null) {
-    // // Muestra un mensaje de conexión exitosa
-
-    // connectionTxt.setText("Conexión exitosa");
-    // System.out.println("XDD");
-    // }
-    // }
-
-    // public void login() throws IOException {
-
-    // if(user.getText().equals("administrador") &&
-    // password.getText().equals("administrador")) {
-
-    // App.setRoot("secondary");
-    // }else{
-    // Alert alert = new Alert(AlertType.ERROR);
-    // alert.setTitle("Error de inicio de sesión");
-    // alert.setHeaderText(null);
-    // alert.setContentText("El usuario o contraseña son incorrectos.");
-    // alert.showAndWait();
-    // }
-
-    // }
-
     @FXML
     public void login() throws SQLException, IOException {
         if (!user.getText().equals("") && !password.getText().equals("")) {
