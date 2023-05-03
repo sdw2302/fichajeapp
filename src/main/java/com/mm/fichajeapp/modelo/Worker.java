@@ -9,18 +9,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Worker {
+    private String dni_trabajador;
     private String nombre_trabajador;
     private String apellido_trabajador;
-    private String dni_trabajador;
     private Double horas_fichadas_trabajador;
 
-    public Worker(String nombre_trabajador, String apellido_trabajador, String dni_trabajador,
-            Double horas_fichadas_trabajador) {
+    public Worker(String dni_trabajador, String nombre_trabajador, String apellido_trabajador, Double horas_fichadas_trabajador) {
+        this.dni_trabajador = dni_trabajador;
         this.nombre_trabajador = nombre_trabajador;
         this.apellido_trabajador = apellido_trabajador;
-        this.dni_trabajador = dni_trabajador;
         this.horas_fichadas_trabajador = horas_fichadas_trabajador;
     }
+
 
     public String getNombre_trabajador() {
         return this.nombre_trabajador;
@@ -72,10 +72,10 @@ public class Worker {
             while (rs.next()) {
                 listaTrabajadores.add(
                     new Worker(
-                        rs.getString(0), 
                         rs.getString(1), 
                         rs.getString(2), 
-                        rs.getDouble(3)
+                        rs.getString(3), 
+                        rs.getDouble(4)
                     )
                 );
             }

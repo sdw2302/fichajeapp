@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.mm.fichajeapp.modelo.DataManagement;
 import com.mm.fichajeapp.modelo.Worker;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -39,18 +38,16 @@ public class SecondaryController {
 
     public void initialize(){
 
-       
+        // ObservableList<Worker> trabajadores = dm.geTableAstList();
 
-        ObservableList<Worker> trabajadores = dm.geTableAstList();
-
-        //ObservableList<Worker> listaTrabajadores = w.todosTrabajadores();
+        ObservableList<Worker> listaTrabajadores = w.todosTrabajadores();
 
         //DNI.setCellValueFactory(new PropertyValueFactory<>("dni_trabajador"));
         DNI.setCellValueFactory(new PropertyValueFactory<Worker, String>("dni_trabajador"));
         Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
         Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
         Horas_trabajadas.setCellValueFactory(new PropertyValueFactory<>("horas_fichadas_trabajador"));
-        tableWorkers.setItems(trabajadores);      
+        tableWorkers.setItems(listaTrabajadores);      
         
     }
 }
