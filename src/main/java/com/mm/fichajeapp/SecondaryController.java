@@ -36,7 +36,6 @@ public class SecondaryController {
 
     DataManagement dm = new DataManagement();
 
-
     public void initialize() {
 
         DNI.setCellValueFactory(new PropertyValueFactory<Worker, String>("dni_trabajador"));
@@ -50,9 +49,11 @@ public class SecondaryController {
     public void loadSchedulesClick() {
         horario.getItems().clear();
         String nif = NIF.getText();
-        String[] schedules = dm.loadSchedules(nif).split(";");
-        for (String string : schedules) {
-            horario.getItems().add(string);
+        if (dm.checkNIF(nif)) {
+            String[] schedules = dm.loadSchedules(nif).split(";");
+            for (String string : schedules) {
+                horario.getItems().add(string);
+            }
         }
     }
 }

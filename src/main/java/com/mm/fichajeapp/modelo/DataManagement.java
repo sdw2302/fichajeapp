@@ -20,17 +20,14 @@ public class DataManagement {
         try {
             Statement ordre = conn.getConn().createStatement();
             ResultSet resultSet = ordre.executeQuery(sql);
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 trabajadores.add(
-                    new Worker(
-                        resultSet.getString(1), 
-                        resultSet.getString(2), 
-                        resultSet.getString(3),
-                        resultSet.getDouble(4)
-                    )
-                );
+                        new Worker(
+                                resultSet.getString(1),
+                                resultSet.getString(2),
+                                resultSet.getString(3),
+                                resultSet.getDouble(4)));
             }
-                
 
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
@@ -38,37 +35,36 @@ public class DataManagement {
         return trabajadores;
     }
 
-    public ObservableList<String> getDniWorkers(){
+    public ObservableList<String> getDniWorkers() {
 
-        ObservableList<String> DNIs =  FXCollections.observableArrayList();
+        ObservableList<String> DNIs = FXCollections.observableArrayList();
         String sql = "SELECT dni_trabajador FROM trabajador";
-        
+
         DbConnection conn = new DbConnection();
 
         try {
             Statement ordre = conn.getConn().createStatement();
             ResultSet resultSet = ordre.executeQuery(sql);
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 DNIs.add((resultSet.getString(1)));
             }
-            conn.getConn().close();
 
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
-        
+
         return DNIs;
     }
 
-    public boolean checkNIF(String NIF){
+    public boolean checkNIF(String NIF) {
 
         boolean nifExist = false;
         String nifToCheck = NIF;
-        ObservableList <String> DNIs = this.getDniWorkers();
+        ObservableList<String> DNIs = this.getDniWorkers();
 
         for (String dni : DNIs) {
-            if(nifToCheck.equals(dni)){
+            if (nifToCheck.equals(dni)) {
                 nifExist = true;
             }
         }
@@ -76,7 +72,6 @@ public class DataManagement {
         return nifExist;
 
     }
-
 
     public String loadSchedules(String dni) {
         String toReturn = "";
@@ -97,5 +92,5 @@ public class DataManagement {
         }
         return toReturn;
     }
-    
+
 }
