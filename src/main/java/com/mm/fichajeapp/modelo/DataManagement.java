@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 
 public class DataManagement {
 
-    public ObservableList<Worker> geTableAstList() {
+    public ObservableList<Worker> getTableWorkersAstList() {
 
         ObservableList<Worker> trabajadores = FXCollections.observableArrayList();
         String sql = "select dni_trabajador, nombre_trabajador, apellido_trabajador,  horas_fichadas_trabajador from trabajador";
@@ -19,9 +19,17 @@ public class DataManagement {
         try {
             Statement ordre = conn.getConn().createStatement();
             ResultSet resultSet = ordre.executeQuery(sql);
-            while (resultSet.next())
-                trabajadores.add(new Worker(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
-                        resultSet.getDouble(4)));
+            while (resultSet.next()){
+                trabajadores.add(
+                    new Worker(
+                        resultSet.getString(1), 
+                        resultSet.getString(2), 
+                        resultSet.getString(3),
+                        resultSet.getDouble(4)
+                    )
+                );
+            }
+                
 
             conn.getConn().close();
         } catch (SQLException e) {
@@ -29,6 +37,30 @@ public class DataManagement {
         }
         return trabajadores;
     }
+
+    public ObservableList<String> getDniWorkers(){
+
+        ObservableList<String> DNIs =  FXCollections.observableArrayList();
+        String sql = "SELECT dni_trabajador FROM trabajador";
+        
+        DbConnection conn = new DbConnection();
+
+        try {
+            Statement ordre = conn.getConn().createStatement();
+            ResultSet resultSet = ordre.executeQuery(sql);
+
+            while (resultSet.next()){
+                DNIs.add((resultSet.getString(1)));
+            }
+            conn.getConn().close();
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        
+        return DNIs;
+    }
+
 
     public String loadSchedules(String dni) {
         String toReturn = "";
