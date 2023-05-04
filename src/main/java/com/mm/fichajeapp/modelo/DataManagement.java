@@ -7,6 +7,7 @@ import com.mm.fichajeapp.modelo.Worker;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TextField;
 
 public class DataManagement {
 
@@ -58,6 +59,22 @@ public class DataManagement {
         }
         
         return DNIs;
+    }
+
+    public boolean checkNIF(String NIF){
+
+        boolean nifExist = false;
+        String nifToCheck = NIF;
+        ObservableList <String> DNIs = this.getDniWorkers();
+
+        for (String dni : DNIs) {
+            if(nifToCheck.equals(dni)){
+                nifExist = true;
+            }
+        }
+
+        return nifExist;
+
     }
 
 

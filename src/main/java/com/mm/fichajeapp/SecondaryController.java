@@ -47,23 +47,6 @@ public class SecondaryController {
 
     }
 
-
-    public boolean checkNIF(){
-
-        boolean nifExist = false;
-        String nifToCheck = NIF.getText();
-        ObservableList <String> DNIs = dm.getDniWorkers();
-
-        for (String dni : DNIs) {
-            if(nifToCheck.equals(dni)){
-                nifExist = true;
-            }
-        }
-
-        return nifExist;
-
-    }
-
     public void loadSchedulesClick() {
         horario.getItems().clear();
         String nif = NIF.getText();
