@@ -13,10 +13,11 @@
       <AnchorPane prefHeight="500.0" prefWidth="250.0">
          <children>
             <Label layoutX="24.0" layoutY="42.0" text="NIF" />
-            <Label layoutX="21.0" layoutY="104.0" text="Horario" />
+            <Label layoutX="24.0" layoutY="132.0" text="Horario" />
             <Button layoutX="75.0" layoutY="397.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="103.0" text="Fichar" />
             <TextField fx:id="NIF" layoutX="75.0" layoutY="38.0" />
-            <ComboBox fx:id="horario" layoutX="75.0" layoutY="100.0" prefWidth="150.0" />
+            <ComboBox fx:id="horario" layoutX="77.0" layoutY="128.0" prefWidth="150.0" />
+            <Button fx:id="loadSchedules" layoutX="24.0" layoutY="82.0" mnemonicParsing="false" onAction="#loadSchedulesClick" text="Cargar Horarios" />
          </children></AnchorPane>
       <TableView fx:id="tableWorkers" layoutX="273.0" layoutY="11.0" prefHeight="500.0" prefWidth="400.0">
         <columns>
