@@ -1,5 +1,7 @@
 package com.mm.fichajeapp;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -21,46 +23,48 @@ import com.mm.fichajeapp.modelo.Worker;
 
 public class CreateWorker {
 
-        @FXML
-        TextField NIFToAdd;    
+    @FXML
+    TextField NIFToAdd;    
 
-        @FXML
-        TextField NombreToAdd;
+    @FXML
+    TextField NombreToAdd;
 
-        @FXML
-        TextField ApellidoToAdd;
+    @FXML
+    TextField ApellidoToAdd;
 
-        @FXML
-        DatePicker FechaNacimientoToAdd;
+    @FXML
+    DatePicker FechaNacimientoToAdd;
 
-        @FXML
-        ComboBox EmpresaResponsableToAdd;
+    @FXML
+    ComboBox EmpresaResponsableToAdd;
 
-        @FXML
-        TableView<Worker> tableWorkers;
+    @FXML
+    TableView<Worker> tableWorkers;
 
-        @FXML
-        TableColumn<Worker,String> DNI;
-        @FXML
-        TableColumn<Worker,String> Nombre;
-        @FXML
-        TableColumn<Worker,String> Apellido;
-        @FXML
-        TableColumn<Worker,LocalDate> FechaNacimiento;
-        @FXML
-        TableColumn<Worker,String> EmpresaResponsable;
+    @FXML
+    TableColumn<Worker,String> DNI;
+    @FXML
+    TableColumn<Worker,String> Nombre;
+    @FXML
+    TableColumn<Worker,String> Apellido;
+    @FXML
+    TableColumn<Worker,LocalDate> FechaNacimiento;
+    @FXML
+    TableColumn<Worker,String> EmpresaResponsable;
 
-        DataManagement dm = new DataManagement();
+    DataManagement dm = new DataManagement();
 
-        public void initialize(){
+    public void initialize(){
 
-                DNI.setCellValueFactory(new PropertyValueFactory<>("dni_trabajador"));
-                Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
-                Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
-                FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_nacimiento"));
-                tableWorkers.setItems(dm.getTableWorkersAstList());      
+        DNI.setCellValueFactory(new PropertyValueFactory<>("dni_trabajador"));
+        Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
+        Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
+        FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_nacimiento"));
+        tableWorkers.setItems(dm.getTableWorkersAstList());      
 
-        }
+    }
 
-        
+    
+
+
 }
