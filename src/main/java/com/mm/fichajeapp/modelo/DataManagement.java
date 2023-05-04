@@ -23,7 +23,6 @@ public class DataManagement {
                 trabajadores.add(new Worker(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
                         resultSet.getDouble(4)));
 
-            conn.getConn().close();
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -43,7 +42,6 @@ public class DataManagement {
                         + ": de " + resultSet.getString(2)
                         + " a " + resultSet.getString(3) + ";";
             }
-            conn.getConn().close();
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
             return "error";

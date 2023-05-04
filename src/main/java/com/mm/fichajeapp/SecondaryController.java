@@ -17,7 +17,7 @@ public class SecondaryController {
     TextField NIF;
 
     @FXML
-    ComboBox horario;
+    ComboBox<String> horario;
 
     @FXML
     TableView<Worker> tableWorkers;
@@ -54,8 +54,11 @@ public class SecondaryController {
     }
 
     public void loadSchedulesClick() {
+        horario.getItems().clear();
         String nif = NIF.getText();
-
-        this.initialize();
+        String[] schedules = dm.loadSchedules(nif).split(";");
+        for (String string : schedules) {
+            horario.getItems().add(string);
+        }
     }
 }
