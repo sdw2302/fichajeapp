@@ -31,7 +31,6 @@ public class DataManagement {
             }
                 
 
-            conn.getConn().close();
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -75,7 +74,6 @@ public class DataManagement {
                         + ": de " + resultSet.getString(2)
                         + " a " + resultSet.getString(3) + ";";
             }
-            conn.getConn().close();
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
             return "error";
