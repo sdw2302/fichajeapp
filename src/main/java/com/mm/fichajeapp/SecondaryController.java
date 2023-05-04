@@ -36,20 +36,14 @@ public class SecondaryController {
 
     DataManagement dm = new DataManagement();
 
-    Worker w = new Worker(null, null, null, null);
 
     public void initialize() {
 
-        // ObservableList<Worker> trabajadores = dm.geTableAstList();
-
-        ObservableList<Worker> listaTrabajadores = w.todosTrabajadores();
-
-        // DNI.setCellValueFactory(new PropertyValueFactory<>("dni_trabajador"));
         DNI.setCellValueFactory(new PropertyValueFactory<Worker, String>("dni_trabajador"));
         Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
         Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
         Horas_trabajadas.setCellValueFactory(new PropertyValueFactory<>("horas_fichadas_trabajador"));
-        tableWorkers.setItems(listaTrabajadores);
+        tableWorkers.setItems(dm.getTableWorkersAstList());
 
     }
 
