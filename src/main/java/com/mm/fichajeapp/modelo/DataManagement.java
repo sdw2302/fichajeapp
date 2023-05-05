@@ -92,9 +92,7 @@ public class DataManagement {
         if (toArray == "")
             return 0;
         String[] array = toArray.split(";");
-        System.out.println(toArray);
         int id = Integer.parseInt(array[array.length - 1]) + 1;
-        System.out.println(id);
         return id;
     }
 
