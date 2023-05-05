@@ -3,11 +3,8 @@ package com.mm.fichajeapp.modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.mm.fichajeapp.modelo.Worker;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TextField;
 
 public class DataManagement {
 
@@ -35,10 +32,11 @@ public class DataManagement {
         return trabajadores;
     }
 
+    // ???
     public ObservableList<String> getDniWorkers() {
 
         ObservableList<String> DNIs = FXCollections.observableArrayList();
-        String sql = "SELECT dni_trabajador FROM trabajador";
+        String sql = "select dni_trabajador from trabajador";
 
         DbConnection conn = new DbConnection();
 
@@ -57,25 +55,9 @@ public class DataManagement {
         return DNIs;
     }
 
-    public boolean checkNIF(String NIF) {
-
-        boolean nifExist = false;
-        String nifToCheck = NIF;
-        ObservableList<String> DNIs = this.getDniWorkers();
-
-        for (String dni : DNIs) {
-            if (nifToCheck.equals(dni)) {
-                nifExist = true;
-            }
-        }
-
-        return nifExist;
-
-    }
-
     public String loadSchedules(String dni) {
         String toReturn = "";
-        String sql = "select id_horario, hora_inicio_horario, hora_final_horario from horario where id_horario = (select id_horario from horario_trabajador where id_trabajador = (select id_trabajador from trabajador where dni_trabajador = \""
+        String sql = "select id_horario, hora_inicio_horario, hora_final_horario, tiempo_descanso_horario from horario where id_horario = (select id_horario from horario_trabajador where id_trabajador = (select id_trabajador from trabajador where dni_trabajador = \""
                 + dni + "\"))";
         DbConnection conn = new DbConnection();
         try {
@@ -84,7 +66,8 @@ public class DataManagement {
             while (resultSet.next()) {
                 toReturn += resultSet.getString(1)
                         + ": de " + resultSet.getString(2)
-                        + " a " + resultSet.getString(3) + ";";
+                        + " a " + resultSet.getString(3)
+                        + ", descanso: " + resultSet.getString(4) + ";";
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());

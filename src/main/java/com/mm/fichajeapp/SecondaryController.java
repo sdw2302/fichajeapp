@@ -2,7 +2,6 @@ package com.mm.fichajeapp;
 
 import com.mm.fichajeapp.modelo.DataManagement;
 import com.mm.fichajeapp.modelo.Worker;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -14,10 +13,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class SecondaryController {
 
     @FXML
-    TextField NIF;
+    ComboBox<String> horario;
 
     @FXML
-    ComboBox<String> horario;
+    TextField horas;
+
+    @FXML
+    TextField minutos;
+
+    @FXML
+    Button botonFichar;
 
     @FXML
     TableView<Worker> tableWorkers;
@@ -30,9 +35,6 @@ public class SecondaryController {
     TableColumn<Worker, String> Apellido;
     @FXML
     TableColumn<Worker, Double> Horas_trabajadas;
-
-    @FXML
-    Button loadSchedules;
 
     DataManagement dm = new DataManagement();
 
@@ -48,12 +50,24 @@ public class SecondaryController {
 
     public void loadSchedulesClick() {
         horario.getItems().clear();
-        String nif = NIF.getText();
-        if (dm.checkNIF(nif)) {
+        String nif = tableWorkers.getSelectionModel().getSelectedItem() != null
+                ? tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador()
+                : "";
+        if (nif != "") {
             String[] schedules = dm.loadSchedules(nif).split(";");
-            for (String string : schedules) {
+            for (String string : schedules)
                 horario.getItems().add(string);
-            }
         }
+    }
+
+    public void signTimeWorked() {
+        int hours, minutes;
+        hours = Integer.parseInt(horas.getText()) <= 24 && Integer.parseInt(horas.getText()) >= 0
+                ? Integer.parseInt(horas.getText())
+                : -1;
+        minutes = Integer.parseInt(horas.getText()) <= 60 && Integer.parseInt(horas.getText()) > 0
+                ? Integer.parseInt(horas.getText())
+                : 0;
+
     }
 }

@@ -12,14 +12,15 @@
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="250.0">
          <children>
-            <Label layoutX="24.0" layoutY="42.0" text="NIF" />
-            <Label layoutX="24.0" layoutY="132.0" text="Horario" />
-            <Button layoutX="75.0" layoutY="397.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="103.0" text="Fichar" />
-            <TextField fx:id="NIF" layoutX="75.0" layoutY="38.0" />
-            <ComboBox fx:id="horario" layoutX="77.0" layoutY="128.0" prefWidth="150.0" />
-            <Button fx:id="loadSchedules" layoutX="24.0" layoutY="82.0" mnemonicParsing="false" onAction="#loadSchedulesClick" text="Cargar Horarios" />
+            <Label layoutX="24.0" layoutY="26.0" text="Horario" />
+            <Button fx:id="botonFichar" layoutX="75.0" layoutY="397.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="103.0" text="Fichar" />
+            <ComboBox fx:id="horario" layoutX="77.0" layoutY="22.0" prefWidth="150.0" />
+            <TextField fx:id="horas" layoutX="75.0" layoutY="67.0" prefHeight="24.0" prefWidth="53.0" promptText="Horas" />
+            <TextField fx:id="minutos" layoutX="145.0" layoutY="67.0" prefHeight="24.0" prefWidth="66.0" promptText="Minutos" />
+            <Label layoutX="24.0" layoutY="71.0" text="Fichaje" />
+            <Label layoutX="134.0" layoutY="71.0" text=":" />
          </children></AnchorPane>
-      <TableView fx:id="tableWorkers" layoutX="273.0" layoutY="11.0" prefHeight="500.0" prefWidth="400.0">
+      <TableView fx:id="tableWorkers" layoutX="273.0" layoutY="11.0" onMouseClicked="#loadSchedulesClick" prefHeight="500.0" prefWidth="400.0">
         <columns>
           <TableColumn fx:id="DNI" prefWidth="75.0" text="DNI" />
           <TableColumn fx:id="Nombre" prefWidth="114.0" text="Nombre" />
