@@ -13,7 +13,7 @@
       <AnchorPane prefHeight="500.0" prefWidth="250.0">
          <children>
             <Label layoutX="24.0" layoutY="26.0" text="Horario" />
-            <Button fx:id="botonFichar" layoutX="75.0" layoutY="397.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="103.0" text="Fichar" />
+            <Button fx:id="botonFichar" layoutX="75.0" layoutY="397.0" mnemonicParsing="false" onAction="#signTimeWorked" prefHeight="52.0" prefWidth="103.0" text="Fichar" />
             <ComboBox fx:id="horario" layoutX="77.0" layoutY="22.0" prefWidth="150.0" />
             <TextField fx:id="horas" layoutX="75.0" layoutY="67.0" prefHeight="24.0" prefWidth="53.0" promptText="Horas" />
             <TextField fx:id="minutos" layoutX="145.0" layoutY="67.0" prefHeight="24.0" prefWidth="66.0" promptText="Minutos" />

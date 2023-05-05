@@ -71,9 +71,52 @@ public class DataManagement {
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
-            return "error";
+            return "";
         }
         return toReturn;
     }
 
+    private int getAvailableSignTimeId() {
+        String sql = "select id_fichaje from fichaje order by id_fichaje asc";
+        DbConnection conn = new DbConnection();
+        String toArray = "";
+        try {
+            Statement ordre = conn.getConn().createStatement();
+            ResultSet resultSet = ordre.executeQuery(sql);
+            while (resultSet.next()) {
+                toArray += resultSet.getString(1) + ";";
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        if (toArray == "")
+            return 0;
+        String[] array = toArray.split(";");
+        System.out.println(toArray);
+        int id = Integer.parseInt(array[array.length - 1]) + 1;
+        System.out.println(id);
+        return id;
+    }
+
+    public void signTime(String dni, int id_horario, double time) {
+        String sql = "select id_horario_trabajador from horario_trabajador where id_trabajador = (select id_trabajador from trabajador where dni_trabajador = '"
+                + dni + "') and id_horario = " + id_horario;
+        DbConnection conn = new DbConnection();
+        int id_horario_trabajador = 0;
+        try {
+            Statement ordre = conn.getConn().createStatement();
+            ResultSet resultSet = ordre.executeQuery(sql);
+            while (resultSet.next())
+                id_horario_trabajador = resultSet.getInt(1);
+            sql = "insert into fichaje values (" + this.getAvailableSignTimeId() + ", "
+                    + String.valueOf(id_horario_trabajador) + ", " + time + ")";
+            try {
+                conn.getConn().createStatement().execute(sql);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }

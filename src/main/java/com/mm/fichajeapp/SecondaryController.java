@@ -56,18 +56,30 @@ public class SecondaryController {
         if (nif != "") {
             String[] schedules = dm.loadSchedules(nif).split(";");
             for (String string : schedules)
-                horario.getItems().add(string);
+                if (string != "")
+                    horario.getItems().add(string);
         }
     }
 
     public void signTimeWorked() {
+        if (horas.getText() == "" || minutos.getText() == "")
+            return;
         int hours, minutes;
         hours = Integer.parseInt(horas.getText()) <= 24 && Integer.parseInt(horas.getText()) >= 0
                 ? Integer.parseInt(horas.getText())
                 : -1;
-        minutes = Integer.parseInt(horas.getText()) <= 60 && Integer.parseInt(horas.getText()) > 0
+        minutes = Integer.parseInt(horas.getText()) <= 60 && Integer.parseInt(horas.getText()) >= 0
                 ? Integer.parseInt(horas.getText())
-                : 0;
-
+                : -1;
+        double time;
+        if (hours == -1 || minutes == -1 || (hours == 0 && minutes == 0))
+            return;
+        else
+            time = (double) hours + (double) (minutes / 60 * 100);
+        if (horario.getSelectionModel().getSelectedItem() != null)
+            dm.signTime(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
+                    Integer.parseInt(String.valueOf(horario.getSelectionModel().getSelectedItem().charAt(0))), time);
+        tableWorkers.getItems().clear();
+        tableWorkers.setItems(dm.getTableWorkersAstList());
     }
 }
