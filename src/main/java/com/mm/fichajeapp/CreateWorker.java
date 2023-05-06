@@ -1,13 +1,18 @@
 package com.mm.fichajeapp;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import com.mm.fichajeapp.modelo.DataManagement;
@@ -44,6 +49,14 @@ public class CreateWorker {
     @FXML
     TableColumn<Worker, String> EmpresaResponsable;
 
+    @FXML
+    MenuButton optionMenu;
+
+    @FXML
+    MenuItem FicharMenu;
+    @FXML
+    MenuItem CreateWorkerMenu;
+
     DataManagement dm = new DataManagement();
 
     public void initialize() {
@@ -54,6 +67,30 @@ public class CreateWorker {
         FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_nacimiento"));
         tableWorkers.setItems(dm.getTableWorkersAstList());
 
+        // FicharMenu.setOnAction(new EventHandler<ActionEvent>() {
+        //     @Override
+        //     public void handle(ActionEvent event) {
+        //         try {
+        //             App.setRoot("secondary");
+        //         } catch (IOException e) {
+        //             System.out.println(e.getMessage());
+        //         }
+        //     }
+        // });
+
+        // CreateWorkerMenu.setOnAction(new EventHandler<ActionEvent>() {
+        //     @Override
+        //     public void handle(ActionEvent event) {
+        //         try { 
+        //             App.setRoot("CreateWorker");
+        //         } catch (IOException e) {
+        //             System.out.println(e.getMessage());
+        //         }
+        //     }
+        // });
+
     }
+
+    
 
 }
