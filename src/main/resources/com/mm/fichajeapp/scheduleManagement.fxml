@@ -9,12 +9,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="226.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.ScheduleManagement">
+<AnchorPane id="AnchorPane" prefHeight="226.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.ScheduleManagement">
    <children>
       <MenuButton fx:id="optionMenu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Menú de opciones">
          <items>
-            <MenuItem id="FicharMenu" fx:id="FicharMenu" mnemonicParsing="false" onAction="#changeToFichar" text="Fichar" />
-            <MenuItem id="CreateWorkerMenu" fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#changeMenuToCreateWorker" text="Crear Trabajador" />
+            <MenuItem id="FicharMenu" fx:id="FicharMenu" mnemonicParsing="false" onAction="#switchToTimeSigning" text="Fichar" />
+            <MenuItem id="CreateWorkerMenu" fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#switchToCreateWorker" text="Crear Trabajador" />
+            <MenuItem fx:id="CreateWorkerMenu1" mnemonicParsing="false" onAction="#switchToScheduleManagement" text="Gestionar horarios" />
          </items>
       </MenuButton>
       <TableView fx:id="table" layoutX="169.0" layoutY="12.0" prefHeight="200.0" prefWidth="227.0">

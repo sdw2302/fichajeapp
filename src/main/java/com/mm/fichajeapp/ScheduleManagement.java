@@ -1,5 +1,7 @@
 package com.mm.fichajeapp;
 
+import java.io.IOException;
+
 import com.mm.fichajeapp.modelo.DataManagement;
 import com.mm.fichajeapp.modelo.Schedule;
 
@@ -84,11 +86,15 @@ public class ScheduleManagement {
         table.setItems(dm.getTableSchedulesAsList());
     }
 
-    public void changeToFichar() {
-
+    public void switchToTimeSigning() throws IOException {
+        App.setRoot("secondary");
     }
 
-    public void changeMenuToCreateWorker() {
+    public void switchToCreateWorker() throws IOException {
+        App.setRoot("createWorker");
+    }
 
+    public void switchToScheduleManagement() throws IOException {
+        App.setRoot("scheduleManagement");
     }
 }

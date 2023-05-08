@@ -23,9 +23,9 @@
             <Label layoutX="134.0" layoutY="108.0" text=":" />
             <MenuButton fx:id="optionMenu" layoutY="8.0" mnemonicParsing="false" text="Menú de opciones">
                <items>
-                  <MenuItem id="FicharMenu" fx:id="FicharMenu" mnemonicParsing="false" onAction="#changeToFichar" text="Fichar" />
-                  <MenuItem id="CreateWorkerMenu" fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#changeMenuToCreateWorker" text="Crear Trabajador" />
-                  <MenuItem id="CreateWorkerMenu" fx:id="ScheduleManagementMenu" mnemonicParsing="false" onAction="#changeMenuToScheduleManagement" text="Gestionar Horarios" />
+                  <MenuItem id="FicharMenu" fx:id="FicharMenu" mnemonicParsing="false" onAction="#switchToTimeSigning" text="Fichar" />
+                  <MenuItem id="CreateWorkerMenu" fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#switchToCreateWorker" text="Crear Trabajador" />
+                  <MenuItem id="CreateWorkerMenu" fx:id="ScheduleManagementMenu" mnemonicParsing="false" onAction="#switchToScheduleManagement" text="Gestionar Horarios" />
                </items>
             </MenuButton>
          </children>

@@ -61,15 +61,15 @@ public class SecondaryController {
         tableWorkers.setItems(dm.getTableWorkersAsList());
     }
 
-    public void changeToFichar() throws IOException {
+    public void switchToTimeSigning() throws IOException {
         App.setRoot("secondary");
     }
 
-    public void changeMenuToCreateWorker() throws IOException {
+    public void switchToCreateWorker() throws IOException {
         App.setRoot("createWorker");
     }
 
-    public void changeMenuToScheduleManagement() throws IOException {
+    public void switchToScheduleManagement() throws IOException {
         App.setRoot("scheduleManagement");
     }
 
