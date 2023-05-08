@@ -11,8 +11,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="1212.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.mm.fichajeapp.CreateWorker">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="1212.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.CreateWorker">
    <children>
       <Label layoutX="114.0" layoutY="72.0" text="NIF:" />
       <Label layoutX="92.0" layoutY="108.0" text="Nombre:" />
@@ -33,7 +32,7 @@
             <TableColumn fx:id="EmpresaResponsable" prefWidth="143.0" text="Empresa responsable" />
         </columns>
       </TableView>
-      <MenuButton fx:id="optionMenu" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" text="MenuButton">
+      <MenuButton fx:id="optionMenu" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" text="Menú de opciones">
         <items>
           <MenuItem fx:id="FicharMenu" mnemonicParsing="false" onAction="#changeToFichar" text="Fichar" />
           <MenuItem fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#changeMenuToCreateWorker" text="Crear trabajador" />

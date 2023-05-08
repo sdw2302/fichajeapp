@@ -29,6 +29,6 @@ public class DbConnection {
     }
 
     public java.sql.Connection getConn() {
-        return this.conn;
+        return DbConnection.conn;
     }
 }
