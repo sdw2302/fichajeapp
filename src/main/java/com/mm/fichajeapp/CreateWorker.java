@@ -63,8 +63,7 @@ public class CreateWorker {
         Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
         Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
         FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_nacimiento"));
-        tableWorkers.setItems(dm.getTableWorkersAstList());
-
+        tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
 
     }
 

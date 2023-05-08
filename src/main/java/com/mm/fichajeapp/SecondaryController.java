@@ -58,7 +58,7 @@ public class SecondaryController {
         Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
         Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
         Horas_trabajadas.setCellValueFactory(new PropertyValueFactory<>("horas_fichadas_trabajador"));
-        tableWorkers.setItems(dm.getTableWorkersAstList());
+        tableWorkers.setItems(dm.getTableWorkersAsList());
     }
 
     public void changeToFichar() throws IOException {
@@ -106,6 +106,6 @@ public class SecondaryController {
         dm.signTime(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
                 Integer.parseInt(String.valueOf(horario.getSelectionModel().getSelectedItem().charAt(0))), time);
         tableWorkers.getItems().clear();
-        tableWorkers.setItems(dm.getTableWorkersAstList());
+        tableWorkers.setItems(dm.getTableWorkersAsList());
     }
 }
