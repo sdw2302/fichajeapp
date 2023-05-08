@@ -65,7 +65,7 @@ public class Worker {
 
         try {
 
-            Statement stmt = connection.createStatement();
+            Statement stmt = connection.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(sqlSentence);
 
             while (rs.next()) {

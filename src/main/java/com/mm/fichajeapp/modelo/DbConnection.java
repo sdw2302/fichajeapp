@@ -2,7 +2,6 @@ package com.mm.fichajeapp.modelo;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -31,10 +30,5 @@ public class DbConnection {
 
     public java.sql.Connection getConn() {
         return this.conn;
-    }
-
-    public Statement createStatement() throws SQLException {
-        Statement stmt = conn.createStatement();
-        return stmt;
     }
 }

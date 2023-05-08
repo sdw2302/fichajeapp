@@ -96,7 +96,7 @@ public class DataManagement {
         return id;
     }
 
-    public void signTime(String dni, int id_horario, double time) {
+    public void signTime(String dni, int id_horario, String time) {
         String sql = "select id_horario_trabajador from horario_trabajador where id_trabajador = (select id_trabajador from trabajador where dni_trabajador = '"
                 + dni + "') and id_horario = " + id_horario;
         DbConnection conn = new DbConnection();
@@ -108,11 +108,6 @@ public class DataManagement {
                 id_horario_trabajador = resultSet.getInt(1);
             sql = "insert into fichaje values (" + this.getAvailableSignTimeId() + ", "
                     + String.valueOf(id_horario_trabajador) + ", " + time + ")";
-
-            // sql = "insert into fichaje (id_fichaje, id_horario_trabajador, horas_trabajadas) values (" 
-            // + this.getAvailableSignTimeId() + ", "
-            // + String.valueOf(id_horario_trabajador) + ", " + String.format("%.2f", time) + ")";
-            
             try {
                 conn.getConn().createStatement().execute(sql);
             } catch (Exception e) {

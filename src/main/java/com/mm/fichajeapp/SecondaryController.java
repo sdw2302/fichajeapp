@@ -1,16 +1,10 @@
 package com.mm.fichajeapp;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-
 import java.io.IOException;
 
 import com.mm.fichajeapp.modelo.DataManagement;
 import com.mm.fichajeapp.modelo.Worker;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
@@ -19,7 +13,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 public class SecondaryController {
 
@@ -86,28 +79,24 @@ public class SecondaryController {
     }
 
     public void signTimeWorked() {
-        if (horas.getText() == "" || minutos.getText() == "")
+        if (horas.getText() == "" || minutos.getText() == "" || horario.getSelectionModel().getSelectedItem() == null)
             return;
         int hours, minutes;
         hours = Integer.parseInt(horas.getText()) <= 24 && Integer.parseInt(horas.getText()) >= 0
                 ? Integer.parseInt(horas.getText())
                 : -1;
-        minutes = Integer.parseInt(horas.getText()) <= 60 && Integer.parseInt(horas.getText()) >= 0
-                ? Integer.parseInt(horas.getText())
+        minutes = Integer.parseInt(minutos.getText()) <= 60 && Integer.parseInt(minutos.getText()) >= 0
+                ? Integer.parseInt(minutos.getText())
                 : -1;
-        // minutes = Integer.parseInt(minutos.getText()) <= 60 &&
-        // Integer.parseInt(minutos.getText()) >= 0
-        // ? Integer.parseInt(minutos.getText())
-        // : -1;
 
-        double time;
+        String time;
         if (hours == -1 || minutes == -1 || (hours == 0 && minutes == 0))
             return;
-        else
-            time = (double) hours + (double) (minutes / 60 * 100);
-        if (horario.getSelectionModel().getSelectedItem() != null)
-            dm.signTime(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
-                    Integer.parseInt(String.valueOf(horario.getSelectionModel().getSelectedItem().charAt(0))), time);
+        time = String.valueOf(hours);
+        time += minutes >= 45 ? ".75" : minutes >= 30 ? ".50" : minutes >= 15 ? ".25" : "";
+
+        dm.signTime(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
+                Integer.parseInt(String.valueOf(horario.getSelectionModel().getSelectedItem().charAt(0))), time);
         tableWorkers.getItems().clear();
         tableWorkers.setItems(dm.getTableWorkersAstList());
     }
