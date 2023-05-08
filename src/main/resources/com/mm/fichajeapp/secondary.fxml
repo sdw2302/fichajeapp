@@ -10,37 +10,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-   prefHeight="525.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/19"
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.SecondaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.SecondaryController">
    <children>
       <AnchorPane layoutX="7.0" layoutY="5.0" prefHeight="516.0" prefWidth="266.0">
          <children>
             <Label layoutX="24.0" layoutY="63.0" text="Horario" />
-            <Button fx:id="botonFichar" layoutX="75.0" layoutY="434.0" mnemonicParsing="false"
-               onAction="#signTimeWorked" prefHeight="52.0" prefWidth="103.0" text="Fichar" />
+            <Button fx:id="botonFichar" layoutX="75.0" layoutY="434.0" mnemonicParsing="false" onAction="#signTimeWorked" prefHeight="52.0" prefWidth="103.0" text="Fichar" />
             <ComboBox fx:id="horario" layoutX="77.0" layoutY="59.0" prefWidth="150.0" />
-            <TextField fx:id="horas" layoutX="75.0" layoutY="104.0" prefHeight="24.0"
-               prefWidth="53.0" promptText="Horas" />
-            <TextField fx:id="minutos" layoutX="145.0" layoutY="104.0" prefHeight="24.0"
-               prefWidth="66.0" promptText="Minutos" />
+            <TextField fx:id="horas" layoutX="75.0" layoutY="104.0" prefHeight="24.0" prefWidth="53.0" promptText="Horas" />
+            <TextField fx:id="minutos" layoutX="145.0" layoutY="104.0" prefHeight="24.0" prefWidth="66.0" promptText="Minutos" />
             <Label layoutX="24.0" layoutY="108.0" text="Fichaje" />
             <Label layoutX="134.0" layoutY="108.0" text=":" />
-            <MenuButton fx:id="optionMenu" layoutY="8.0" mnemonicParsing="false"
-               text="Menú de opciones">
+            <MenuButton fx:id="optionMenu" layoutY="8.0" mnemonicParsing="false" text="Menú de opciones">
                <items>
-                  <MenuItem id="FicharMenu" fx:id="FicharMenu" mnemonicParsing="false" text="Fichar" />
-                  <MenuItem id="CreateWorkerMenu" fx:id="CreateWorkerMenu" mnemonicParsing="false"
-                     onAction="#changeMenuToCreateWorker" text="Crear Trabajador" />
-                  <MenuItem id="CreateWorkerMenu" fx:id="ScheduleManagementMenu"
-                     mnemonicParsing="false" onAction="#changeMenuToScheduleManagement"
-                     text="Gestionar Horarios" />
+                  <MenuItem id="FicharMenu" fx:id="FicharMenu" mnemonicParsing="false" onAction="#changeToFichar" text="Fichar" />
+                  <MenuItem id="CreateWorkerMenu" fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#changeMenuToCreateWorker" text="Crear Trabajador" />
+                  <MenuItem id="CreateWorkerMenu" fx:id="ScheduleManagementMenu" mnemonicParsing="false" onAction="#changeMenuToScheduleManagement" text="Gestionar Horarios" />
                </items>
             </MenuButton>
          </children>
       </AnchorPane>
-      <TableView fx:id="tableWorkers" layoutX="273.0" layoutY="11.0"
-         onMouseClicked="#loadSchedulesClick" prefHeight="500.0" prefWidth="400.0">
+      <TableView fx:id="tableWorkers" layoutX="273.0" layoutY="11.0" onMouseClicked="#loadSchedulesClick" prefHeight="500.0" prefWidth="400.0">
          <columns>
             <TableColumn fx:id="DNI" prefWidth="75.0" text="DNI" />
             <TableColumn fx:id="Nombre" prefWidth="114.0" text="Nombre" />

@@ -19,9 +19,9 @@
       <Label layoutX="88.0" layoutY="148.0" text="Apellidos:" />
       <Label layoutX="32.0" layoutY="187.0" text="Fecha de nacimiento:" />
       <Label layoutX="28.0" layoutY="232.0" text="Empresa responsable:" />
-      <TextField fx:id="NIFToAdd" layoutX="148.0" layoutY="68.0" />
-      <TextField fx:id="NombreToAdd" layoutX="148.0" layoutY="104.0" />
-      <TextField fx:id="ApellidoToAdd" layoutX="148.0" layoutY="144.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="NIFToAdd" layoutX="148.0" layoutY="68.0" prefHeight="25.0" prefWidth="174.0" />
+      <TextField fx:id="NombreToAdd" layoutX="148.0" layoutY="104.0" prefHeight="25.0" prefWidth="174.0" />
+      <TextField fx:id="ApellidoToAdd" layoutX="148.0" layoutY="144.0" prefHeight="25.0" prefWidth="174.0" />
       <DatePicker fx:id="FechaNacimientoToAdd" layoutX="150.0" layoutY="183.0" />
       <ComboBox fx:id="EmpresaResponsableToAdd" layoutX="150.0" layoutY="228.0" prefHeight="25.0" prefWidth="174.0" />
       <TableView fx:id="tableWorkers" layoutX="380.0" layoutY="39.0" prefHeight="475.0" prefWidth="795.0">
@@ -36,7 +36,8 @@
       <MenuButton fx:id="optionMenu" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" text="MenuButton">
         <items>
           <MenuItem fx:id="FicharMenu" mnemonicParsing="false" onAction="#changeToFichar" text="Fichar" />
-          <MenuItem fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#changeToCreateWorker" text="Crear trabajador" />
+          <MenuItem fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#changeMenuToCreateWorker" text="Crear trabajador" />
+            <MenuItem fx:id="CreateWorkerMenu1" mnemonicParsing="false" onAction="#changeMenuToScheduleManagement" text="Gestionar horarios" />
         </items>
       </MenuButton>
       <Button layoutX="141.0" layoutY="455.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="164.0" text="Crear Trabajador" />

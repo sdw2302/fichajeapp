@@ -117,4 +117,30 @@ public class DataManagement {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+
+    public ObservableList<Worker> getTableWorkersCompleteAsList() {
+
+        ObservableList<Worker> trabajadores = FXCollections.observableArrayList();
+        String sql = "select dni_trabajador, nombre_trabajador, apellido_trabajador, fecha_nacimiento_trabajador, horas_fichadas_trabajador, nombre_empresa from trabajador, empresa where trabajador.id_empresa = empresa.id_empresa;";
+
+        DbConnection conn = new DbConnection();
+        try {
+            Statement ordre = conn.getConn().createStatement();
+            ResultSet resultSet = ordre.executeQuery(sql);
+            while (resultSet.next()) {
+                trabajadores.add(
+                        new Worker(
+                                resultSet.getString(1),
+                                resultSet.getString(2),
+                                resultSet.getString(3),
+                                resultSet.getDouble(4)));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return trabajadores;
+    }
+
 }

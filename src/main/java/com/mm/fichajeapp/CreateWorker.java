@@ -59,22 +59,27 @@ public class CreateWorker {
 
     public void initialize() {
 
-        // DNI.setCellValueFactory(new PropertyValueFactory<>("dni_trabajador"));
-        // Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
-        // Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
-        // FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_nacimiento"));
-        // tableWorkers.setItems(dm.getTableWorkersAstList());
+        DNI.setCellValueFactory(new PropertyValueFactory<>("dni_trabajador"));
+        Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
+        Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
+        FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_nacimiento"));
+        tableWorkers.setItems(dm.getTableWorkersAstList());
 
 
     }
 
-    public void changeToCreateWorker() throws IOException {
-        App.setRoot("createWorker");
-    }
+    
 
     public void changeToFichar() throws IOException {
         App.setRoot("secondary");
     }
     
+    public void changeMenuToCreateWorker() throws IOException {
+        App.setRoot("createWorker");
+    }
+
+    public void changeMenuToScheduleManagement() throws IOException {
+        App.setRoot("scheduleManagement");
+    }
 
 }
