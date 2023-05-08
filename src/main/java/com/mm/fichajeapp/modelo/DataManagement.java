@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 
 public class DataManagement {
 
-    public ObservableList<Worker> getTableWorkersAstList() {
+    public ObservableList<Worker> getTableWorkersAsList() {
 
         ObservableList<Worker> trabajadores = FXCollections.observableArrayList();
         String sql = "select dni_trabajador, nombre_trabajador, apellido_trabajador,  horas_fichadas_trabajador from trabajador";

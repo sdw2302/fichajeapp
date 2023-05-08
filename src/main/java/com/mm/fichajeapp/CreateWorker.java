@@ -8,8 +8,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -61,10 +59,11 @@ public class CreateWorker {
 
         // DNI.setCellValueFactory(new PropertyValueFactory<>("dni_trabajador"));
         // Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
-        // Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
-        // FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_nacimiento"));
+        // Apellido.setCellValueFactory(new
+        // PropertyValueFactory<>("apellido_trabajador"));
+        // FechaNacimiento.setCellValueFactory(new
+        // PropertyValueFactory<>("fecha_nacimiento"));
         // tableWorkers.setItems(dm.getTableWorkersAstList());
-
 
     }
 
@@ -75,6 +74,5 @@ public class CreateWorker {
     public void changeToFichar() throws IOException {
         App.setRoot("secondary");
     }
-    
 
 }
