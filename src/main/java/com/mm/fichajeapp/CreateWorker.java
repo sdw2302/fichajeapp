@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.time.LocalDate;
 
 import com.mm.fichajeapp.modelo.DataManagement;
@@ -43,7 +44,7 @@ public class CreateWorker {
     @FXML
     TableColumn<Worker, String> Apellido;
     @FXML
-    TableColumn<Worker, LocalDate> FechaNacimiento;
+    TableColumn<Worker, Date> FechaNacimiento;
     @FXML
     TableColumn<Worker, String> EmpresaResponsable;
 
@@ -63,6 +64,7 @@ public class CreateWorker {
         Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
         Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
         FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_nacimiento"));
+        EmpresaResponsable.setCellValueFactory(new PropertyValueFactory<>("empresa_responsable"));
         tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
 
     }
