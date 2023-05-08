@@ -1,7 +1,5 @@
 package com.mm.fichajeapp;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -68,25 +66,25 @@ public class CreateWorker {
         // tableWorkers.setItems(dm.getTableWorkersAstList());
 
         // FicharMenu.setOnAction(new EventHandler<ActionEvent>() {
-        //     @Override
-        //     public void handle(ActionEvent event) {
-        //         try {
-        //             App.setRoot("secondary");
-        //         } catch (IOException e) {
-        //             System.out.println(e.getMessage());
-        //         }
-        //     }
+        // @Override
+        // public void handle(ActionEvent event) {
+        // try {
+        // App.setRoot("secondary");
+        // } catch (IOException e) {
+        // System.out.println(e.getMessage());
+        // }
+        // }
         // });
 
         // CreateWorkerMenu.setOnAction(new EventHandler<ActionEvent>() {
-        //     @Override
-        //     public void handle(ActionEvent event) {
-        //         try { 
-        //             App.setRoot("CreateWorker");
-        //         } catch (IOException e) {
-        //             System.out.println(e.getMessage());
-        //         }
-        //     }
+        // @Override
+        // public void handle(ActionEvent event) {
+        // try {
+        // App.setRoot("CreateWorker");
+        // } catch (IOException e) {
+        // System.out.println(e.getMessage());
+        // }
+        // }
         // });
 
     }
