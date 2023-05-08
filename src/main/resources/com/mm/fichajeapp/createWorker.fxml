@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.mm.fichajeapp.CreateWorker">
+   <children>
+      <Label layoutX="42.0" layoutY="88.0" text="NIF:" />
+      <Label layoutX="42.0" layoutY="115.0" text="Nombre:" />
+      <Label layoutX="42.0" layoutY="150.0" text="Apellidos:" />
+      <Label layoutX="42.0" layoutY="180.0" text="Fecha de nacimiento:" />
+      <Label layoutX="38.0" layoutY="214.0" text="Empresa responsable:" />
+      <TableView layoutX="291.0" layoutY="88.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <MenuButton fx:id="optionMenu" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" text="MenuButton">
+        <items>
+          <MenuItem fx:id="FicharMenu" mnemonicParsing="false" onAction="#changeToFichar" text="Fichar" />
+          <MenuItem fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#changeToCreateWorker" text="Crear trabajador" />
+        </items>
+      </MenuButton>
+   </children>
 </AnchorPane>

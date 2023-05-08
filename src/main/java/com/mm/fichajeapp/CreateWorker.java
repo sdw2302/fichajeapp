@@ -20,34 +20,34 @@ import com.mm.fichajeapp.modelo.Worker;
 
 public class CreateWorker {
 
-    @FXML
-    TextField NIFToAdd;
+    // @FXML
+    // TextField NIFToAdd;
 
-    @FXML
-    TextField NombreToAdd;
+    // @FXML
+    // TextField NombreToAdd;
 
-    @FXML
-    TextField ApellidoToAdd;
+    // @FXML
+    // TextField ApellidoToAdd;
 
-    @FXML
-    DatePicker FechaNacimientoToAdd;
+    // @FXML
+    // DatePicker FechaNacimientoToAdd;
 
-    @FXML
-    ComboBox<String> EmpresaResponsableToAdd;
+    // @FXML
+    // ComboBox<String> EmpresaResponsableToAdd;
 
-    @FXML
-    TableView<Worker> tableWorkers;
+    // @FXML
+    // TableView<Worker> tableWorkers;
 
-    @FXML
-    TableColumn<Worker, String> DNI;
-    @FXML
-    TableColumn<Worker, String> Nombre;
-    @FXML
-    TableColumn<Worker, String> Apellido;
-    @FXML
-    TableColumn<Worker, LocalDate> FechaNacimiento;
-    @FXML
-    TableColumn<Worker, String> EmpresaResponsable;
+    // @FXML
+    // TableColumn<Worker, String> DNI;
+    // @FXML
+    // TableColumn<Worker, String> Nombre;
+    // @FXML
+    // TableColumn<Worker, String> Apellido;
+    // @FXML
+    // TableColumn<Worker, LocalDate> FechaNacimiento;
+    // @FXML
+    // TableColumn<Worker, String> EmpresaResponsable;
 
     @FXML
     MenuButton optionMenu;
@@ -61,11 +61,11 @@ public class CreateWorker {
 
     public void initialize() {
 
-        DNI.setCellValueFactory(new PropertyValueFactory<>("dni_trabajador"));
-        Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
-        Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
-        FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_nacimiento"));
-        tableWorkers.setItems(dm.getTableWorkersAstList());
+        // DNI.setCellValueFactory(new PropertyValueFactory<>("dni_trabajador"));
+        // Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
+        // Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
+        // FechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_nacimiento"));
+        // tableWorkers.setItems(dm.getTableWorkersAstList());
 
         // FicharMenu.setOnAction(new EventHandler<ActionEvent>() {
         //     @Override
@@ -91,6 +91,13 @@ public class CreateWorker {
 
     }
 
+    public void changeToCreateWorker() throws IOException {
+        App.setRoot("createWorker");
+    }
+
+    public void changeToFichar() throws IOException {
+        App.setRoot("secondary");
+    }
     
 
 }

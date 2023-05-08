@@ -68,8 +68,12 @@ public class SecondaryController {
         tableWorkers.setItems(dm.getTableWorkersAstList());
     }
 
-    public void changeMenu() throws IOException {
+    public void changeToCreateWorker() throws IOException {
         App.setRoot("createWorker");
+    }
+
+    public void changeToFichar() throws IOException {
+        App.setRoot("secondary");
     }
 
     public void loadSchedulesClick() {
