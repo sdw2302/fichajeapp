@@ -24,7 +24,7 @@
             <MenuButton fx:id="optionMenu" layoutY="8.0" mnemonicParsing="false" text="Menú de opciones">
               <items>
                 <MenuItem id="FicharMenu" fx:id="FicharMenu" mnemonicParsing="false" text="Fichar" />
-                <MenuItem id="CreateWorkerMenu" fx:id="CreateWorkerMenu" mnemonicParsing="false" text="Crear Trabajador" />
+                <MenuItem id="CreateWorkerMenu" fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#changeMenu" text="Crear Trabajador" />
               </items>
             </MenuButton>
          </children></AnchorPane>

@@ -69,16 +69,7 @@ public class SecondaryController {
         Horas_trabajadas.setCellValueFactory(new PropertyValueFactory<>("horas_fichadas_trabajador"));
         tableWorkers.setItems(dm.getTableWorkersAstList());
 
-        FicharMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    App.setRoot("secondary");
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        });
+        
 
         // CreateWorkerMenu.setOnAction(new EventHandler<ActionEvent>() {
         //     @Override
@@ -91,22 +82,13 @@ public class SecondaryController {
         //     }
         // });
 
-        CreateWorkerMenu.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateWorker.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) botonFichar.getScene().getWindow();
-                    stage.setScene(scene);
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        });
+        
         
 
+    }
+
+    public void changeMenu() throws IOException{
+            App.setRoot("CreateWorker");
     }
 
     public void loadSchedulesClick() {

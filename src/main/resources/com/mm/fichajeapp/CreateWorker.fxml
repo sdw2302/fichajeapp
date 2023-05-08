@@ -1,43 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="1107.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.CreateWorker">
-   <children>
-      <Label layoutX="32.0" layoutY="73.0" text="NIF:" />
-      <Label layoutX="32.0" layoutY="105.0" text="Nombre:" />
-      <Label layoutX="30.0" layoutY="140.0" text="Apellidos:" />
-      <Label layoutX="23.0" layoutY="178.0" text="Fecha de nacimiento:" />
-      <Label layoutX="22.0" layoutY="219.0" text="Empresa responsable:" />
-      <TextField fx:id="NIF" layoutX="91.0" layoutY="69.0" prefHeight="25.0" prefWidth="230.0" />
-      <TextField fx:id="Nombre" layoutX="91.0" layoutY="101.0" prefHeight="25.0" prefWidth="230.0" />
-      <TextField fx:id="Apellido" layoutX="91.0" layoutY="136.0" prefHeight="25.0" prefWidth="230.0" />
-      <DatePicker fx:id="FechaNacimiento" layoutX="147.0" layoutY="174.0" />
-      <ComboBox fx:id="EmpresaResponsable" layoutX="147.0" layoutY="215.0" prefHeight="25.0" prefWidth="174.0" />
-      <TableView fx:id="tableWorkers" layoutX="333.0" layoutY="36.0" prefHeight="420.0" prefWidth="733.0">
-        <columns>
-          <TableColumn prefWidth="108.0" text="NIF" />
-          <TableColumn prefWidth="134.0" text="Nombre" />
-            <TableColumn prefWidth="148.0" text="Apellido" />
-            <TableColumn prefWidth="166.0" text="Fecha de nacimiento" />
-            <TableColumn prefWidth="176.0" text="Empresa responsable" />
-        </columns>
-      </TableView>
-      <Button fx:id="Create" layoutX="29.0" layoutY="414.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="98.0" text="Crear" />
-      <MenuButton fx:id="optionMenu" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" text="MenuButton">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </MenuButton>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
+    
 </AnchorPane>
