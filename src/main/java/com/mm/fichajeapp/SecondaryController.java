@@ -48,7 +48,6 @@ public class SecondaryController {
     @FXML
     TableColumn<Worker, Double> Horas_trabajadas;
 
-
     // Menu //
     @FXML
     MenuButton optionMenu;
@@ -57,7 +56,6 @@ public class SecondaryController {
     MenuItem FicharMenu;
     @FXML
     MenuItem CreateWorkerMenu;
-
 
     DataManagement dm = new DataManagement();
 
@@ -68,27 +66,10 @@ public class SecondaryController {
         Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
         Horas_trabajadas.setCellValueFactory(new PropertyValueFactory<>("horas_fichadas_trabajador"));
         tableWorkers.setItems(dm.getTableWorkersAstList());
-
-        
-
-        // CreateWorkerMenu.setOnAction(new EventHandler<ActionEvent>() {
-        //     @Override
-        //     public void handle(ActionEvent event) {
-        //         try { 
-        //             App.setRoot("CreateWorker");
-        //         } catch (IOException e) {
-        //             System.out.println(e.getMessage());
-        //         }
-        //     }
-        // });
-
-        
-        
-
     }
 
-    public void changeMenu() throws IOException{
-            App.setRoot("CreateWorker");
+    public void changeMenu() throws IOException {
+        App.setRoot("createWorker");
     }
 
     public void loadSchedulesClick() {
@@ -114,9 +95,10 @@ public class SecondaryController {
         minutes = Integer.parseInt(horas.getText()) <= 60 && Integer.parseInt(horas.getText()) >= 0
                 ? Integer.parseInt(horas.getText())
                 : -1;
-        // minutes = Integer.parseInt(minutos.getText()) <= 60 && Integer.parseInt(minutos.getText()) >= 0 
-        //         ? Integer.parseInt(minutos.getText()) 
-        //         : -1;
+        // minutes = Integer.parseInt(minutos.getText()) <= 60 &&
+        // Integer.parseInt(minutos.getText()) >= 0
+        // ? Integer.parseInt(minutos.getText())
+        // : -1;
 
         double time;
         if (hours == -1 || minutes == -1 || (hours == 0 && minutes == 0))
