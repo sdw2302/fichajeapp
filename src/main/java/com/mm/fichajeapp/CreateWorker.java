@@ -44,7 +44,7 @@ public class CreateWorker {
     @FXML
     TableColumn<Worker, String> Apellido;
     @FXML
-    TableColumn<Worker, Date> FechaNacimiento;
+    TableColumn<Worker, String> FechaNacimiento;
     @FXML
     TableColumn<Worker, String> EmpresaResponsable;
 

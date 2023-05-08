@@ -13,7 +13,7 @@ public class Worker {
     private String dni_trabajador;
     private String nombre_trabajador;
     private String apellido_trabajador;
-    private Date fecha_nacimiento;
+    private String fecha_nacimiento;
     private Double horas_fichadas_trabajador;
     private String empresa_responsable;
 
@@ -26,7 +26,7 @@ public class Worker {
     }
 
 
-    public Worker(String dni_trabajador, String nombre_trabajador, String apellido_trabajador, Date fecha_nacimiento, String empresa_responsable) {
+    public Worker(String dni_trabajador, String nombre_trabajador, String apellido_trabajador, String fecha_nacimiento, String empresa_responsable) {
         this.dni_trabajador = dni_trabajador;
         this.nombre_trabajador = nombre_trabajador;
         this.apellido_trabajador = apellido_trabajador;
@@ -66,34 +66,5 @@ public class Worker {
         this.horas_fichadas_trabajador = horas_fichadas_trabajador;
     }
 
-    DbConnection connection = new DbConnection();
-
-    String sqlSentence = "";
-
-    public ObservableList<Worker> todosTrabajadores() {
-
-        ObservableList<Worker> listaTrabajadores = FXCollections.observableArrayList();
-
-        sqlSentence += "select dni_trabajador, nombre_trabajador, apellido_trabajador,  horas_fichadas_trabajador from trabajador";
-
-        try {
-
-            Statement stmt = connection.getConn().createStatement();
-            ResultSet rs = stmt.executeQuery(sqlSentence);
-
-            while (rs.next()) {
-                listaTrabajadores.add(
-                        new Worker(
-                                rs.getString(1),
-                                rs.getString(2),
-                                rs.getString(3),
-                                rs.getDouble(4)));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return listaTrabajadores;
-    }
+    
 }

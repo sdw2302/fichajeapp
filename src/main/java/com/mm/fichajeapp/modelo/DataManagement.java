@@ -6,6 +6,8 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
+
 public class DataManagement {
 
     public ObservableList<Worker> getTableWorkersAsList() {
@@ -134,7 +136,7 @@ public class DataManagement {
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
-                        resultSet.getDate(4),
+                        resultSet.getDate(4).toString(),
                         resultSet.getString(5)
                     )
                 );
