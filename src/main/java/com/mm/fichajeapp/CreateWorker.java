@@ -11,9 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
-
 import com.mm.fichajeapp.modelo.DataManagement;
 import com.mm.fichajeapp.modelo.Worker;
 
@@ -69,12 +66,10 @@ public class CreateWorker {
 
     }
 
-    
-
     public void changeToFichar() throws IOException {
         App.setRoot("secondary");
     }
-    
+
     public void changeMenuToCreateWorker() throws IOException {
         App.setRoot("createWorker");
     }

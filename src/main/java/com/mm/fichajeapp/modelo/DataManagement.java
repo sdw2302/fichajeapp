@@ -6,8 +6,6 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.time.LocalDate;
-
 public class DataManagement {
 
     public ObservableList<Worker> getTableWorkersAsList() {
@@ -120,7 +118,6 @@ public class DataManagement {
         }
     }
 
-
     public ObservableList<Worker> getTableWorkersCompleteAsList() {
 
         ObservableList<Worker> trabajadores = FXCollections.observableArrayList();
@@ -132,14 +129,12 @@ public class DataManagement {
             ResultSet resultSet = ordre.executeQuery(sql);
             while (resultSet.next()) {
                 trabajadores.add(
-                    new Worker(
-                        resultSet.getString(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getDate(4).toString(),
-                        resultSet.getString(5)
-                    )
-                );
+                        new Worker(
+                                resultSet.getString(1),
+                                resultSet.getString(2),
+                                resultSet.getString(3),
+                                resultSet.getDate(4).toString(),
+                                resultSet.getString(5)));
             }
 
         } catch (SQLException e) {
@@ -148,4 +143,59 @@ public class DataManagement {
         return trabajadores;
     }
 
+    public ObservableList<Schedule> getTableSchedulesAsList() {
+        ObservableList<Schedule> schedules = FXCollections.observableArrayList();
+
+        String sql = "select * from horario";
+
+        DbConnection conn = new DbConnection();
+
+        try {
+            Statement ordre = conn.getConn().createStatement();
+            ResultSet resultSet = ordre.executeQuery(sql);
+            while (resultSet.next()) {
+                schedules.add(
+                        new Schedule(
+                                resultSet.getInt(1),
+                                resultSet.getString(2),
+                                resultSet.getString(3),
+                                resultSet.getString(4)));
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return schedules;
+    }
+
+    public int getAvailableScheduleId() {
+        String sql = "select id_horario from horario order by id_horario asc", toArray = "";
+
+        DbConnection conn = new DbConnection();
+
+        try {
+            Statement ordre = conn.getConn().createStatement();
+            ResultSet resultSet = ordre.executeQuery(sql);
+            while (resultSet.next())
+                toArray += resultSet.getString(1) + ";";
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        if (toArray == "")
+            return 0;
+        String[] array = toArray.split(";");
+        int id = Integer.parseInt(array[array.length - 1]) + 1;
+        return id;
+    }
+
+    public void createSchedule(String hora_inicio, String hora_final, String descanso) {
+        String sql = "insert into horario values (" + getAvailableScheduleId() + ", " + hora_inicio + ", " + hora_final
+                + ", " + descanso + ")";
+        DbConnection conn = new DbConnection();
+
+        try {
+            conn.getConn().createStatement().execute(sql);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }
