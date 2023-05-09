@@ -4,8 +4,9 @@ import java.io.IOException;
 
 import com.mm.fichajeapp.modelo.DataManagement;
 import com.mm.fichajeapp.modelo.Schedule;
-
+import com.mm.fichajeapp.modelo.Worker;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,6 +48,24 @@ public class ScheduleManagement {
     @FXML
     TableColumn<Schedule, String> time_descanso;
 
+    @FXML
+    TableView<Worker> tableWorkers;
+
+    @FXML
+    TableColumn<Worker, String> DNI;
+
+    @FXML
+    TableColumn<Worker, String> Nombre;
+
+    @FXML
+    TableColumn<Worker, String> Apellido;
+
+    @FXML
+    TableColumn<Worker, Double> Horas_trabajadas;
+
+    @FXML
+    ComboBox<String> dayOfTheWeek;
+
     DataManagement dm = new DataManagement();
 
     public void initialize() {
@@ -54,6 +73,15 @@ public class ScheduleManagement {
         time_final.setCellValueFactory(new PropertyValueFactory<Schedule, String>("hora_final"));
         time_descanso.setCellValueFactory(new PropertyValueFactory<Schedule, String>("descanso"));
         table.setItems(dm.getTableSchedulesAsList());
+
+        DNI.setCellValueFactory(new PropertyValueFactory<Worker, String>("dni_trabajador"));
+        Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
+        Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
+        Horas_trabajadas.setCellValueFactory(new PropertyValueFactory<>("horas_fichadas_trabajador"));
+        tableWorkers.setItems(dm.getTableWorkersAsList());
+
+        String[] days = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" };
+        dayOfTheWeek.getItems().addAll(days);
     }
 
     public void createSchedule() {
@@ -96,5 +124,41 @@ public class ScheduleManagement {
 
     public void switchToScheduleManagement() throws IOException {
         App.setRoot("scheduleManagement");
+    }
+
+    public void assignSchedule() {
+        if (table.getSelectionModel().getSelectedItem() == null
+                || tableWorkers.getSelectionModel().getSelectedItem() == null
+                || dayOfTheWeek.getSelectionModel().getSelectedItem() == null)
+            return;
+        String daySelected = dayOfTheWeek.getSelectionModel().getSelectedItem();
+        int day = 0;
+        switch (daySelected) {
+            case "Lunes":
+                day = 1;
+                break;
+            case "Martes":
+                day = 2;
+                break;
+            case "Miercoles":
+                day = 3;
+                break;
+            case "Jueves":
+                day = 4;
+                break;
+            case "Viernes":
+                day = 5;
+                break;
+            case "Sabado":
+                day = 6;
+                break;
+            case "Domingo":
+                day = 7;
+                break;
+            default:
+                return;
+        }
+        dm.assignSchedule(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
+                table.getSelectionModel().getSelectedItem().getId(), day);
     }
 }

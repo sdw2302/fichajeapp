@@ -57,7 +57,7 @@ public class DataManagement {
 
     public String loadSchedules(String dni) {
         String toReturn = "";
-        String sql = "select id_horario, hora_inicio_horario, hora_final_horario, tiempo_descanso_horario from horario where id_horario = (select id_horario from horario_trabajador where id_trabajador = (select id_trabajador from trabajador where dni_trabajador = \""
+        String sql = "select id_horario, hora_inicio_horario, hora_final_horario, tiempo_descanso_horario from horario where id_horario in (select id_horario from horario_trabajador where id_trabajador = (select id_trabajador from trabajador where dni_trabajador = \""
                 + dni + "\"))";
         DbConnection conn = new DbConnection();
         try {
@@ -190,6 +190,40 @@ public class DataManagement {
     public void createSchedule(String hora_inicio, String hora_final, String descanso) {
         String sql = "insert into horario values (" + getAvailableScheduleId() + ", " + hora_inicio + ", " + hora_final
                 + ", " + descanso + ")";
+        DbConnection conn = new DbConnection();
+
+        try {
+            conn.getConn().createStatement().execute(sql);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public int getAvailableScheduleAssignmentId() {
+        String sql = "select id_horario_trabajador from horario_trabajador order by id_horario_trabajador asc",
+                toArray = "";
+
+        DbConnection conn = new DbConnection();
+
+        try {
+            Statement ordre = conn.getConn().createStatement();
+            ResultSet resultSet = ordre.executeQuery(sql);
+            while (resultSet.next())
+                toArray += resultSet.getString(1) + ";";
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        if (toArray == "")
+            return 0;
+        String[] array = toArray.split(";");
+        int id = Integer.parseInt(array[array.length - 1]) + 1;
+        return id;
+    }
+
+    public void assignSchedule(String dni, int id_horario, int id_dia) {
+        String sql = "insert into horario_trabajador values (" + this.getAvailableScheduleAssignmentId()
+                + ", (select id_trabajador from trabajador where dni_trabajador = '" + dni + "'), " + id_horario + ", "
+                + id_dia + ")";
         DbConnection conn = new DbConnection();
 
         try {
