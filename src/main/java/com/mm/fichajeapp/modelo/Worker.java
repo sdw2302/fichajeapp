@@ -3,6 +3,7 @@ package com.mm.fichajeapp.modelo;
 import java.time.LocalDate;
 
 public class Worker {
+    private int id_trabajador;
     private String dni_trabajador;
     private String nombre_trabajador;
     private String apellido_trabajador;
@@ -25,6 +26,18 @@ public class Worker {
         this.fecha_nacimiento = fecha_nacimiento;
         this.empresa_responsable = empresa_responsable;
     }
+
+
+    public Worker(int id_trabajador, String dni_trabajador, String nombre_trabajador, String apellido_trabajador, LocalDate fecha_nacimiento, Double horas_fichadas_trabajador, String empresa_responsable) {
+        this.id_trabajador = id_trabajador;
+        this.dni_trabajador = dni_trabajador;
+        this.nombre_trabajador = nombre_trabajador;
+        this.apellido_trabajador = apellido_trabajador;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.horas_fichadas_trabajador = horas_fichadas_trabajador;
+        this.empresa_responsable = empresa_responsable;
+    }
+
 
     public String getNombre_trabajador() {
         return this.nombre_trabajador;

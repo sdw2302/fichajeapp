@@ -3,6 +3,8 @@ package com.mm.fichajeapp.modelo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -33,27 +35,6 @@ public class DataManagement {
     }
 
     // ???
-    public ObservableList<String> getDniWorkers() {
-
-        ObservableList<String> DNIs = FXCollections.observableArrayList();
-        String sql = "select dni_trabajador from trabajador";
-
-        DbConnection conn = new DbConnection();
-
-        try {
-            Statement ordre = conn.getConn().createStatement();
-            ResultSet resultSet = ordre.executeQuery(sql);
-
-            while (resultSet.next()) {
-                DNIs.add((resultSet.getString(1)));
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-
-        return DNIs;
-    }
 
     public String loadSchedules(String dni) {
         String toReturn = "";
@@ -143,7 +124,7 @@ public class DataManagement {
         return trabajadores;
     }
 
-    public ObservableList<String> getNameCompanys() {
+    public ObservableList<String> getNameCompanies() {
 
         ObservableList<String> empresas = FXCollections.observableArrayList();
         String sql = "SELECT nombre_empresa from empresa;";
@@ -154,8 +135,7 @@ public class DataManagement {
             ResultSet resultSet = ordre.executeQuery(sql);
             while (resultSet.next()) {
                 empresas.add(
-                    resultSet.getString(1)
-                );
+                        resultSet.getString(1));
             }
 
         } catch (SQLException e) {
@@ -164,7 +144,78 @@ public class DataManagement {
         return empresas;
     }
 
+    public void createWorker(String dni, String nombre, String apellido, LocalDate fecha_nacimiento,
+            String empresa_responsable) {
+        if (!this.checkDni(dni))
+            return;
+        String sql = "select id_empresa from empresa where nombre_empresa = '" + empresa_responsable
+        + "'";
+        int id = 0;
+        DbConnection conn = new DbConnection();
+        try {
+            ResultSet res = conn.getConn().createStatement().executeQuery(sql);
+            while(res.next())
+                id = res.getInt(1);
+            try {
+                sql = "insert into trabajador values (" + this.getAvailableWorkers() + ", '" +
+                nombre + "', '" + apellido + "', '" + dni + "', '" + fecha_nacimiento.getYear() + "-" + fecha_nacimiento.getMonthValue() + "-" + fecha_nacimiento.getDayOfMonth() + "', " + id + ", null);";
+                conn.getConn().createStatement().execute(sql);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 
+    public int getAvailableWorkers() {
+        String sql = "select id_trabajador from trabajador order by id_trabajador asc", toArray = "";
+
+        DbConnection conn = new DbConnection();
+
+        try {
+            Statement ordre = conn.getConn().createStatement();
+            ResultSet resultSet = ordre.executeQuery(sql);
+            while (resultSet.next())
+                toArray += resultSet.getString(1) + ";";
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        if (toArray == "")
+            return 0;
+        String[] array = toArray.split(";");
+        int id = Integer.parseInt(array[array.length - 1]) + 1;
+        return id;
+    }
+
+    public boolean checkDni(String DniToCheck) {
+
+        String DNIs = "";
+        String sql = "select dni_trabajador from trabajador";
+
+        DbConnection conn = new DbConnection();
+
+        try {
+            Statement ordre = conn.getConn().createStatement();
+            ResultSet resultSet = ordre.executeQuery(sql);
+
+            while (resultSet.next()) {
+                DNIs += ((resultSet.getString(1) + ";"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        String[] dnisArray = DNIs.split(";");
+
+        for (String dni : dnisArray) {
+            if (dni.equals(DniToCheck))
+                return false;
+        }
+
+        return true;
+    }
 
     public ObservableList<Schedule> getTableSchedulesAsList() {
         ObservableList<Schedule> schedules = FXCollections.observableArrayList();

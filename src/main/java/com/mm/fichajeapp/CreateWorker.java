@@ -2,6 +2,7 @@ package com.mm.fichajeapp;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
@@ -38,7 +39,6 @@ public class CreateWorker {
 
     @FXML
     TableView<Worker> tableWorkers;
-
     @FXML
     TableColumn<Worker, String> DNI;
     @FXML
@@ -50,13 +50,17 @@ public class CreateWorker {
     @FXML
     TableColumn<Worker, String> EmpresaResponsable;
 
+
     @FXML
     MenuButton optionMenu;
-
     @FXML
     MenuItem FicharMenu;
     @FXML
     MenuItem CreateWorkerMenu;
+
+
+    @FXML
+    Button CreateWorkerBtn;
 
     DataManagement dm = new DataManagement();
 
@@ -69,11 +73,8 @@ public class CreateWorker {
         EmpresaResponsable.setCellValueFactory(new PropertyValueFactory<>("empresa_responsable"));
         tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
 
-        //EmpresaResponsableToAdd.getItems().clear();
-        ObservableList<String> nombreEmpresa = dm.getNameCompanys();
-        // String nombreEmpresa = tableWorkers.getSelectionModel().getSelectedItem() != null
-        //         ? tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador()
-        //         : "";
+        
+        ObservableList<String> nombreEmpresa = dm.getNameCompanies();
         if (nombreEmpresa != null) {
             for (String string : nombreEmpresa)
                 if (string != "")
@@ -94,17 +95,18 @@ public class CreateWorker {
         App.setRoot("scheduleManagement");
     }
 
-    public void loadCompanysToClick() {
-        EmpresaResponsableToAdd.getItems().clear();
-        ObservableList<String> nombreEmpresa = dm.getNameCompanys();
-        // String nombreEmpresa = tableWorkers.getSelectionModel().getSelectedItem() != null
-        //         ? tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador()
-        //         : "";
-        if (nombreEmpresa != null) {
-            for (String string : nombreEmpresa)
-                if (string != "")
-                    EmpresaResponsableToAdd.getItems().add(string);
+    public void createWorker(){
+        if( NIFToAdd.getText().equals("")|| NombreToAdd.getText().equals("") || ApellidoToAdd.getText().equals("")  || FechaNacimientoToAdd.getValue() == null || EmpresaResponsableToAdd.getSelectionModel().getSelectedItem() == null){
+            System.out.println("Faltan cosas");
+            return;
+        }else {
+            dm.createWorker(NIFToAdd.getText(), NombreToAdd.getText(), ApellidoToAdd.getText(), FechaNacimientoToAdd.getValue(), EmpresaResponsableToAdd.getSelectionModel().getSelectedItem());
         }
+        tableWorkers.getItems().clear();
+        tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
     }
 
+    public void deleteWorker(){
+        
+    }
 }
