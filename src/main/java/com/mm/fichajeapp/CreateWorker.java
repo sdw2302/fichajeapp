@@ -107,6 +107,13 @@ public class CreateWorker {
     }
 
     public void deleteWorker(){
-        
+
+        if(tableWorkers.getSelectionModel().getSelectedItem() == null){
+            System.out.println("xd");
+        }else{
+            dm.deleteWorker(tableWorkers.getSelectionModel().getSelectedItem());
+        }
+        tableWorkers.getItems().clear();
+        tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
     }
 }

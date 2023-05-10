@@ -89,4 +89,12 @@ public class Worker {
     }
 
 
+    public int getId_trabajador() {
+        return this.id_trabajador;
+    }
+
+    public void setId_trabajador(int id_trabajador) {
+        this.id_trabajador = id_trabajador;
+    }
+
 }

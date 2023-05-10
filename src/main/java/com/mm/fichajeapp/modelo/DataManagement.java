@@ -144,6 +144,23 @@ public class DataManagement {
         return empresas;
     }
 
+    public void deleteWorker(Worker worker){
+        String sql = "DELETE FROM trabajador WHERE dni_trabajador = '";
+        DbConnection conn = new DbConnection();
+
+        try {
+
+            String dni_trabajador = worker.getDni_trabajador();
+
+            sql += dni_trabajador + "';";
+
+            conn.getConn().createStatement().execute(sql);
+            
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
     public void createWorker(String dni, String nombre, String apellido, LocalDate fecha_nacimiento,
             String empresa_responsable) {
         if (!this.checkDni(dni))
