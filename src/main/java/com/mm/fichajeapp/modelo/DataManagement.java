@@ -143,7 +143,28 @@ public class DataManagement {
         return trabajadores;
     }
 
-    
+    public ObservableList<String> getNameCompanys() {
+
+        ObservableList<String> empresas = FXCollections.observableArrayList();
+        String sql = "SELECT nombre_empresa from empresa;";
+
+        DbConnection conn = new DbConnection();
+        try {
+            Statement ordre = conn.getConn().createStatement();
+            ResultSet resultSet = ordre.executeQuery(sql);
+            while (resultSet.next()) {
+                empresas.add(
+                    resultSet.getString(1)
+                );
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return empresas;
+    }
+
+
 
     public ObservableList<Schedule> getTableSchedulesAsList() {
         ObservableList<Schedule> schedules = FXCollections.observableArrayList();

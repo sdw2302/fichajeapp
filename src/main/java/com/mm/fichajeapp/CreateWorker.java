@@ -1,5 +1,6 @@
 package com.mm.fichajeapp;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -32,6 +33,8 @@ public class CreateWorker {
 
     @FXML
     ComboBox<String> EmpresaResponsableToAdd;
+    
+
 
     @FXML
     TableView<Worker> tableWorkers;
@@ -66,6 +69,17 @@ public class CreateWorker {
         EmpresaResponsable.setCellValueFactory(new PropertyValueFactory<>("empresa_responsable"));
         tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
 
+        //EmpresaResponsableToAdd.getItems().clear();
+        ObservableList<String> nombreEmpresa = dm.getNameCompanys();
+        // String nombreEmpresa = tableWorkers.getSelectionModel().getSelectedItem() != null
+        //         ? tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador()
+        //         : "";
+        if (nombreEmpresa != null) {
+            for (String string : nombreEmpresa)
+                if (string != "")
+                    EmpresaResponsableToAdd.getItems().add(string);
+        }
+
     }
 
     public void switchToTimeSigning() throws IOException {
@@ -78,6 +92,19 @@ public class CreateWorker {
 
     public void switchToScheduleManagement() throws IOException {
         App.setRoot("scheduleManagement");
+    }
+
+    public void loadCompanysToClick() {
+        EmpresaResponsableToAdd.getItems().clear();
+        ObservableList<String> nombreEmpresa = dm.getNameCompanys();
+        // String nombreEmpresa = tableWorkers.getSelectionModel().getSelectedItem() != null
+        //         ? tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador()
+        //         : "";
+        if (nombreEmpresa != null) {
+            for (String string : nombreEmpresa)
+                if (string != "")
+                    EmpresaResponsableToAdd.getItems().add(string);
+        }
     }
 
 }
