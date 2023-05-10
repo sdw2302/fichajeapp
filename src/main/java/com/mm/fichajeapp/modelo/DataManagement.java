@@ -133,7 +133,7 @@ public class DataManagement {
                                 resultSet.getString(1),
                                 resultSet.getString(2),
                                 resultSet.getString(3),
-                                resultSet.getDate(4).toString(),
+                                resultSet.getDate(4).toLocalDate(),
                                 resultSet.getString(5)));
             }
 
@@ -142,6 +142,8 @@ public class DataManagement {
         }
         return trabajadores;
     }
+
+    
 
     public ObservableList<Schedule> getTableSchedulesAsList() {
         ObservableList<Schedule> schedules = FXCollections.observableArrayList();

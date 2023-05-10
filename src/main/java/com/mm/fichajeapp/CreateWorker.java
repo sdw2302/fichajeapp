@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import com.mm.fichajeapp.modelo.DataManagement;
 import com.mm.fichajeapp.modelo.Worker;
 
@@ -41,7 +43,7 @@ public class CreateWorker {
     @FXML
     TableColumn<Worker, String> Apellido;
     @FXML
-    TableColumn<Worker, String> FechaNacimiento;
+    TableColumn<Worker, LocalDate> FechaNacimiento;
     @FXML
     TableColumn<Worker, String> EmpresaResponsable;
 
