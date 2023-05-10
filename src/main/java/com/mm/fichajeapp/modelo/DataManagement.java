@@ -34,8 +34,6 @@ public class DataManagement {
         return trabajadores;
     }
 
-    // ???
-
     public String loadSchedules(String dni) {
         String toReturn = "";
         String sql = "select id_horario, hora_inicio_horario, hora_final_horario, tiempo_descanso_horario from horario where id_horario in (select id_horario from horario_trabajador where id_trabajador = (select id_trabajador from trabajador where dni_trabajador = \""
@@ -144,7 +142,7 @@ public class DataManagement {
         return empresas;
     }
 
-    public void deleteWorker(Worker worker){
+    public void deleteWorker(Worker worker) {
         String sql = "DELETE FROM trabajador WHERE dni_trabajador = '";
         DbConnection conn = new DbConnection();
 
@@ -155,7 +153,7 @@ public class DataManagement {
             sql += dni_trabajador + "';";
 
             conn.getConn().createStatement().execute(sql);
-            
+
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -166,16 +164,18 @@ public class DataManagement {
         if (!this.checkDni(dni))
             return;
         String sql = "select id_empresa from empresa where nombre_empresa = '" + empresa_responsable
-        + "'";
+                + "'";
         int id = 0;
         DbConnection conn = new DbConnection();
         try {
             ResultSet res = conn.getConn().createStatement().executeQuery(sql);
-            while(res.next())
+            while (res.next())
                 id = res.getInt(1);
             try {
                 sql = "insert into trabajador values (" + this.getAvailableWorkers() + ", '" +
-                nombre + "', '" + apellido + "', '" + dni + "', '" + fecha_nacimiento.getYear() + "-" + fecha_nacimiento.getMonthValue() + "-" + fecha_nacimiento.getDayOfMonth() + "', " + id + ", null);";
+                        nombre + "', '" + apellido + "', '" + dni + "', '" + fecha_nacimiento.getYear() + "-"
+                        + fecha_nacimiento.getMonthValue() + "-" + fecha_nacimiento.getDayOfMonth() + "', " + id
+                        + ", null);";
                 conn.getConn().createStatement().execute(sql);
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());

@@ -17,32 +17,16 @@ public class Schedule {
         return this.id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getHora_inicio() {
         return this.hora_inicio;
-    }
-
-    public void setHora_inicio(String hora_inicio) {
-        this.hora_inicio = hora_inicio;
     }
 
     public String getHora_final() {
         return this.hora_final;
     }
 
-    public void setHora_final(String hora_final) {
-        this.hora_final = hora_final;
-    }
-
     public String getDescanso() {
         return this.descanso;
-    }
-
-    public void setDescanso(String descanso) {
-        this.descanso = descanso;
     }
 
 }
