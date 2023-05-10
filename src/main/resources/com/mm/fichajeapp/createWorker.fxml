@@ -35,8 +35,8 @@
       </TableView>
       <MenuButton fx:id="optionMenu" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" text="Menú de opciones">
         <items>
-          <MenuItem fx:id="FicharMenu" mnemonicParsing="false" onAction="#switchToTimeSigning" text="Fichar" />
-          <MenuItem fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#switchToCreateWorker" text="Crear trabajador" />
+          <MenuItem fx:id="FicharMenu" mnemonicParsing="false" onAction="#switchToTimeSigning" text="Fichaje" />
+          <MenuItem fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#switchToCreateWorker" text="Gestionar trabajadores" />
             <MenuItem fx:id="CreateWorkerMenu1" mnemonicParsing="false" onAction="#switchToScheduleManagement" text="Gestionar horarios" />
         </items>
       </MenuButton>

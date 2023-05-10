@@ -10,16 +10,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="548.0" prefWidth="459.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.ScheduleManagement">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="1212.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.ScheduleManagement">
    <children>
       <MenuButton fx:id="optionMenu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Menú de opciones">
          <items>
-            <MenuItem id="FicharMenu" fx:id="FicharMenu" mnemonicParsing="false" onAction="#switchToTimeSigning" text="Fichar" />
-            <MenuItem id="CreateWorkerMenu" fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#switchToCreateWorker" text="Crear Trabajador" />
+            <MenuItem id="FicharMenu" fx:id="FicharMenu" mnemonicParsing="false" onAction="#switchToTimeSigning" text="Fichaje" />
+            <MenuItem id="CreateWorkerMenu" fx:id="CreateWorkerMenu" mnemonicParsing="false" onAction="#switchToCreateWorker" text="Gestionar trabajadores" />
             <MenuItem fx:id="CreateWorkerMenu1" mnemonicParsing="false" onAction="#switchToScheduleManagement" text="Gestionar horarios" />
          </items>
       </MenuButton>
-      <TableView fx:id="table" layoutX="169.0" layoutY="12.0" prefHeight="218.0" prefWidth="262.0">
+      <TableView fx:id="table" layoutX="237.0" layoutY="42.0" prefHeight="218.0" prefWidth="262.0">
         <columns>
           <TableColumn fx:id="time_inicio" prefWidth="75.0" text="Hora Inicio" />
           <TableColumn fx:id="time_final" prefWidth="75.0" text="Hora Final" />
@@ -39,7 +39,7 @@
       <Label layoutX="14.0" layoutY="112.0" text="Desc." />
       <Label layoutX="104.0" layoutY="112.0" text=":" />
       <Button fx:id="createScheduleButton" layoutX="37.0" layoutY="138.0" mnemonicParsing="false" onAction="#createSchedule" text="Crear Horario" />
-      <TableView fx:id="tableWorkers" layoutX="18.0" layoutY="243.0" prefHeight="280.0" prefWidth="413.0">
+      <TableView fx:id="tableWorkers" layoutX="701.0" layoutY="45.0" prefHeight="280.0" prefWidth="413.0">
          <columns>
             <TableColumn fx:id="DNI" prefWidth="75.0" text="DNI" />
             <TableColumn fx:id="Nombre" prefWidth="114.0" text="Nombre" />
@@ -47,7 +47,7 @@
             <TableColumn fx:id="Horas_trabajadas" prefWidth="111.0" text="Horas trabajadas" />
          </columns>
       </TableView>
-      <Button fx:id="setScheduleToWorker" layoutX="32.0" layoutY="206.0" mnemonicParsing="false" onAction="#assignSchedule" text="Asignar Horario" />
-      <ComboBox fx:id="dayOfTheWeek" layoutX="12.0" layoutY="172.0" prefWidth="150.0" />
+      <Button fx:id="setScheduleToWorker" layoutX="550.0" layoutY="138.0" mnemonicParsing="false" onAction="#assignSchedule" text="Asignar Horario" />
+      <ComboBox fx:id="dayOfTheWeek" layoutX="525.0" layoutY="46.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
