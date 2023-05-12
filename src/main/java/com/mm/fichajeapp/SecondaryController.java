@@ -50,6 +50,13 @@ public class SecondaryController {
     @FXML
     MenuItem CreateWorkerMenu;
 
+    @FXML
+    Button SwitchToSecondary;
+    @FXML
+    Button SwitchToCreateWorker;
+    @FXML
+    Button SwitchToScheduleManagement;
+
     DataManagement dm = new DataManagement();
 
     public void initialize() {
@@ -61,17 +68,17 @@ public class SecondaryController {
         tableWorkers.setItems(dm.getTableWorkersAsList());
     }
 
-    public void switchToTimeSigning() throws IOException {
-        App.setRoot("secondary");
-    }
+    // public void switchToTimeSigning() throws IOException {
+    //     App.setRoot("secondary");
+    // }
 
-    public void switchToCreateWorker() throws IOException {
-        App.setRoot("createWorker");
-    }
+    // public void switchToCreateWorker() throws IOException {
+    //     App.setRoot("createWorker");
+    // }
 
-    public void switchToScheduleManagement() throws IOException {
-        App.setRoot("scheduleManagement");
-    }
+    // public void switchToScheduleManagement() throws IOException {
+    //     App.setRoot("scheduleManagement");
+    // }
 
     public void loadSchedulesClick() {
         horario.getItems().clear();
@@ -108,4 +115,18 @@ public class SecondaryController {
         tableWorkers.getItems().clear();
         tableWorkers.setItems(dm.getTableWorkersAsList());
     }
+
+    public void switchToSecomdary() throws IOException {
+        App.setRoot("secondary");
+    }
+
+    public void switchToCreateWorker() throws IOException {
+        App.setRoot("createWorker");
+    }
+
+    public void switchToScheduleManagement() throws IOException {
+        App.setRoot("scheduleManagement");
+    }
+
+
 }

@@ -83,17 +83,17 @@ public class CreateWorker {
 
     }
 
-    public void switchToTimeSigning() throws IOException {
-        App.setRoot("secondary");
-    }
+    // public void switchToTimeSigning() throws IOException {
+    //     App.setRoot("secondary");
+    // }
 
-    public void switchToCreateWorker() throws IOException {
-        App.setRoot("createWorker");
-    }
+    // public void switchToCreateWorker() throws IOException {
+    //     App.setRoot("createWorker");
+    // }
 
-    public void switchToScheduleManagement() throws IOException {
-        App.setRoot("scheduleManagement");
-    }
+    // public void switchToScheduleManagement() throws IOException {
+    //     App.setRoot("scheduleManagement");
+    // }
 
     public void createWorker(){
         if( NIFToAdd.getText().equals("")|| NombreToAdd.getText().equals("") || ApellidoToAdd.getText().equals("")  || FechaNacimientoToAdd.getValue() == null || EmpresaResponsableToAdd.getSelectionModel().getSelectedItem() == null){
@@ -115,5 +115,17 @@ public class CreateWorker {
         }
         tableWorkers.getItems().clear();
         tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
+    }
+
+    public void switchToSecomdary() throws IOException {
+        App.setRoot("secondary");
+    }
+
+    public void switchToCreateWorker() throws IOException {
+        App.setRoot("createWorker");
+    }
+
+    public void switchToScheduleManagement() throws IOException {
+        App.setRoot("scheduleManagement");
     }
 }

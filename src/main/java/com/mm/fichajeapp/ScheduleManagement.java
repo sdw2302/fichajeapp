@@ -114,17 +114,17 @@ public class ScheduleManagement {
         table.setItems(dm.getTableSchedulesAsList());
     }
 
-    public void switchToTimeSigning() throws IOException {
-        App.setRoot("secondary");
-    }
+    // public void switchToTimeSigning() throws IOException {
+    //     App.setRoot("secondary");
+    // }
 
-    public void switchToCreateWorker() throws IOException {
-        App.setRoot("createWorker");
-    }
+    // public void switchToCreateWorker() throws IOException {
+    //     App.setRoot("createWorker");
+    // }
 
-    public void switchToScheduleManagement() throws IOException {
-        App.setRoot("scheduleManagement");
-    }
+    // public void switchToScheduleManagement() throws IOException {
+    //     App.setRoot("scheduleManagement");
+    // }
 
     public void assignSchedule() {
         if (table.getSelectionModel().getSelectedItem() == null
@@ -160,5 +160,17 @@ public class ScheduleManagement {
         }
         dm.assignSchedule(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
                 table.getSelectionModel().getSelectedItem().getId(), day);
+    }
+
+    public void switchToSecomdary() throws IOException {
+        App.setRoot("secondary");
+    }
+
+    public void switchToCreateWorker() throws IOException {
+        App.setRoot("createWorker");
+    }
+
+    public void switchToScheduleManagement() throws IOException {
+        App.setRoot("scheduleManagement");
     }
 }
