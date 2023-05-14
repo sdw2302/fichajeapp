@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.mm.fichajeapp.modelo.DataManagement;
 import com.mm.fichajeapp.modelo.Worker;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
@@ -69,15 +70,15 @@ public class SecondaryController {
     }
 
     // public void switchToTimeSigning() throws IOException {
-    //     App.setRoot("secondary");
+    // App.setRoot("secondary");
     // }
 
     // public void switchToCreateWorker() throws IOException {
-    //     App.setRoot("createWorker");
+    // App.setRoot("createWorker");
     // }
 
     // public void switchToScheduleManagement() throws IOException {
-    //     App.setRoot("scheduleManagement");
+    // App.setRoot("scheduleManagement");
     // }
 
     public void loadSchedulesClick() {
@@ -94,8 +95,11 @@ public class SecondaryController {
     }
 
     public void signTimeWorked() {
-        if (horas.getText() == "" || minutos.getText() == "" || horario.getSelectionModel().getSelectedItem() == null)
+        if (horas.getText().isEmpty() || minutos.getText().isEmpty()
+                || horario.getSelectionModel().getSelectedItem() == null) {
+            this.createAlert("Faltan datos");
             return;
+        }
         int hours, minutes;
         hours = Integer.parseInt(horas.getText()) <= 24 && Integer.parseInt(horas.getText()) >= 0
                 ? Integer.parseInt(horas.getText())
@@ -105,13 +109,17 @@ public class SecondaryController {
                 : -1;
 
         String time;
-        if (hours == -1 || minutes == -1 || (hours == 0 && minutes == 0))
+        if (hours == -1 || minutes == -1 || (hours == 0 && minutes == 0)) {
+            this.createAlert("Valores no validos");
             return;
+        }
         time = String.valueOf(hours);
         time += minutes >= 45 ? ".75" : minutes >= 30 ? ".50" : minutes >= 15 ? ".25" : "";
 
-        dm.signTime(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
+        boolean signed = dm.signTime(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
                 Integer.parseInt(String.valueOf(horario.getSelectionModel().getSelectedItem().charAt(0))), time);
+        if (!signed)
+            this.createAlert("Ha ocurrido un error de servidor");
         tableWorkers.getItems().clear();
         tableWorkers.setItems(dm.getTableWorkersAsList());
     }
@@ -128,5 +136,12 @@ public class SecondaryController {
         App.setRoot("scheduleManagement");
     }
 
+    private void createAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Ha ocurrido un error");
+        alert.setContentText(message);
+        alert.showAndWait();
 
+    }
 }

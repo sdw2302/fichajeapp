@@ -2,6 +2,7 @@ package com.mm.fichajeapp;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -34,8 +35,6 @@ public class CreateWorker {
 
     @FXML
     ComboBox<String> EmpresaResponsableToAdd;
-    
-
 
     @FXML
     TableView<Worker> tableWorkers;
@@ -50,14 +49,12 @@ public class CreateWorker {
     @FXML
     TableColumn<Worker, String> EmpresaResponsable;
 
-
     @FXML
     MenuButton optionMenu;
     @FXML
     MenuItem FicharMenu;
     @FXML
     MenuItem CreateWorkerMenu;
-
 
     @FXML
     Button CreateWorkerBtn;
@@ -73,7 +70,6 @@ public class CreateWorker {
         EmpresaResponsable.setCellValueFactory(new PropertyValueFactory<>("empresa_responsable"));
         tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
 
-        
         ObservableList<String> nombreEmpresa = dm.getNameCompanies();
         if (nombreEmpresa != null) {
             for (String string : nombreEmpresa)
@@ -84,35 +80,41 @@ public class CreateWorker {
     }
 
     // public void switchToTimeSigning() throws IOException {
-    //     App.setRoot("secondary");
+    // App.setRoot("secondary");
     // }
 
     // public void switchToCreateWorker() throws IOException {
-    //     App.setRoot("createWorker");
+    // App.setRoot("createWorker");
     // }
 
     // public void switchToScheduleManagement() throws IOException {
-    //     App.setRoot("scheduleManagement");
+    // App.setRoot("scheduleManagement");
     // }
 
-    public void createWorker(){
-        if( NIFToAdd.getText().equals("")|| NombreToAdd.getText().equals("") || ApellidoToAdd.getText().equals("")  || FechaNacimientoToAdd.getValue() == null || EmpresaResponsableToAdd.getSelectionModel().getSelectedItem() == null){
-            System.out.println("Faltan cosas");
+    public void createWorker() {
+        if (NIFToAdd.getText().equals("") || NombreToAdd.getText().equals("") || ApellidoToAdd.getText().equals("")
+                || FechaNacimientoToAdd.getValue() == null
+                || EmpresaResponsableToAdd.getSelectionModel().getSelectedItem() == null) {
+            this.createAlert("Faltan datos");
             return;
-        }else {
-            dm.createWorker(NIFToAdd.getText(), NombreToAdd.getText(), ApellidoToAdd.getText(), FechaNacimientoToAdd.getValue(), EmpresaResponsableToAdd.getSelectionModel().getSelectedItem());
         }
+        boolean created = dm.createWorker(NIFToAdd.getText(), NombreToAdd.getText(), ApellidoToAdd.getText(),
+                FechaNacimientoToAdd.getValue(), EmpresaResponsableToAdd.getSelectionModel().getSelectedItem());
+        if (!created)
+            this.createAlert("Ha ocurrido un error de servidor");
         tableWorkers.getItems().clear();
         tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
     }
 
-    public void deleteWorker(){
+    public void deleteWorker() {
 
-        if(tableWorkers.getSelectionModel().getSelectedItem() == null){
-            System.out.println("xd");
-        }else{
-            dm.deleteWorker(tableWorkers.getSelectionModel().getSelectedItem());
+        if (tableWorkers.getSelectionModel().getSelectedItem() == null) {
+            this.createAlert("Seleccione un trabajador");
+            return;
         }
+        boolean deleted = dm.deleteWorker(tableWorkers.getSelectionModel().getSelectedItem());
+        if (!deleted)
+            this.createAlert("Ha ocurrido un error de servidor");
         tableWorkers.getItems().clear();
         tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
     }
@@ -127,5 +129,14 @@ public class CreateWorker {
 
     public void switchToScheduleManagement() throws IOException {
         App.setRoot("scheduleManagement");
+    }
+
+    private void createAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Ha ocurrido un error");
+        alert.setContentText(message);
+        alert.showAndWait();
+
     }
 }

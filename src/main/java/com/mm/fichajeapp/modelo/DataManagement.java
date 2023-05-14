@@ -75,7 +75,7 @@ public class DataManagement {
         return id;
     }
 
-    public void signTime(String dni, int id_horario, String time) {
+    public boolean signTime(String dni, int id_horario, String time) {
         String sql = "select id_horario_trabajador from horario_trabajador where id_trabajador = (select id_trabajador from trabajador where dni_trabajador = '"
                 + dni + "') and id_horario = " + id_horario;
         DbConnection conn = new DbConnection();
@@ -94,7 +94,9 @@ public class DataManagement {
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
     public ObservableList<Worker> getTableWorkersCompleteAsList() {
@@ -142,7 +144,7 @@ public class DataManagement {
         return empresas;
     }
 
-    public void deleteWorker(Worker worker) {
+    public boolean deleteWorker(Worker worker) {
         String sql = "DELETE FROM trabajador WHERE dni_trabajador = '";
         DbConnection conn = new DbConnection();
 
@@ -156,13 +158,13 @@ public class DataManagement {
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
-    public void createWorker(String dni, String nombre, String apellido, LocalDate fecha_nacimiento,
+    public boolean createWorker(String dni, String nombre, String apellido, LocalDate fecha_nacimiento,
             String empresa_responsable) {
-        if (!this.checkDni(dni))
-            return;
         String sql = "select id_empresa from empresa where nombre_empresa = '" + empresa_responsable
                 + "'";
         int id = 0;
@@ -179,10 +181,13 @@ public class DataManagement {
                 conn.getConn().createStatement().execute(sql);
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
+                return false;
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
     public int getAvailableWorkers() {
@@ -278,7 +283,7 @@ public class DataManagement {
         return id;
     }
 
-    public void createSchedule(String hora_inicio, String hora_final, String descanso) {
+    public boolean createSchedule(String hora_inicio, String hora_final, String descanso) {
         String sql = "insert into horario values (" + getAvailableScheduleId() + ", " + hora_inicio + ", " + hora_final
                 + ", " + descanso + ")";
         DbConnection conn = new DbConnection();
@@ -287,7 +292,9 @@ public class DataManagement {
             conn.getConn().createStatement().execute(sql);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
     public int getAvailableScheduleAssignmentId() {
@@ -311,7 +318,7 @@ public class DataManagement {
         return id;
     }
 
-    public void assignSchedule(String dni, int id_horario, int id_dia) {
+    public boolean assignSchedule(String dni, int id_horario, int id_dia) {
         String sql = "insert into horario_trabajador values (" + this.getAvailableScheduleAssignmentId()
                 + ", (select id_trabajador from trabajador where dni_trabajador = '" + dni + "'), " + id_horario + ", "
                 + id_dia + ")";
@@ -321,6 +328,8 @@ public class DataManagement {
             conn.getConn().createStatement().execute(sql);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 }

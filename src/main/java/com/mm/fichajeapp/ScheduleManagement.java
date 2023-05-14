@@ -6,6 +6,7 @@ import com.mm.fichajeapp.modelo.DataManagement;
 import com.mm.fichajeapp.modelo.Schedule;
 import com.mm.fichajeapp.modelo.Worker;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
@@ -86,8 +87,11 @@ public class ScheduleManagement {
 
     public void createSchedule() {
         if (hours_inicio.getText() == "" || minutes_inicio.getText() == "" || hours_final.getText() == ""
-                || minutes_final.getText() == "" || hours_descanso.getText() == "" || minutes_descanso.getText() == "")
+                || minutes_final.getText() == "" || hours_descanso.getText() == ""
+                || minutes_descanso.getText() == "") {
+            this.createAlert("Faltan datos");
             return;
+        }
         int checkhours_inicio = Integer.parseInt(hours_inicio.getText()),
                 checkminutes_inicio = Integer.parseInt(minutes_inicio.getText()),
                 checkhours_final = Integer.parseInt(hours_final.getText()),
@@ -98,8 +102,10 @@ public class ScheduleManagement {
         if (checkhours_inicio < 0 || checkhours_inicio >= 24 || checkminutes_inicio < 0 || checkminutes_inicio >= 60
                 || checkhours_final < 0 || checkhours_final >= 24 || checkminutes_final < 0 || checkminutes_final >= 60
                 || checkhours_descanso < 0 || checkhours_descanso >= 24 || checkminutes_descanso < 0
-                || checkminutes_descanso >= 60)
+                || checkminutes_descanso >= 60) {
+            this.createAlert("Valores no validos");
             return;
+        }
         String inicioTime = hours_inicio.getText();
         inicioTime += checkminutes_inicio >= 45 ? ".75"
                 : checkminutes_inicio >= 30 ? ".50" : checkminutes_inicio >= 15 ? ".25" : ".00";
@@ -109,7 +115,9 @@ public class ScheduleManagement {
         String descansoTime = hours_descanso.getText();
         descansoTime += checkminutes_descanso >= 45 ? ".75"
                 : checkminutes_descanso >= 30 ? ".50" : checkminutes_descanso >= 15 ? ".25" : ".00";
-        dm.createSchedule(inicioTime, finalTime, descansoTime);
+        boolean created = dm.createSchedule(inicioTime, finalTime, descansoTime);
+        if (!created)
+            this.createAlert("Ha ocurrido un error de servidor");
         table.getItems().clear();
         table.setItems(dm.getTableSchedulesAsList());
     }
@@ -129,8 +137,10 @@ public class ScheduleManagement {
     public void assignSchedule() {
         if (table.getSelectionModel().getSelectedItem() == null
                 || tableWorkers.getSelectionModel().getSelectedItem() == null
-                || dayOfTheWeek.getSelectionModel().getSelectedItem() == null)
+                || dayOfTheWeek.getSelectionModel().getSelectedItem() == null) {
+            this.createAlert("Faltan datos");
             return;
+        }
         String daySelected = dayOfTheWeek.getSelectionModel().getSelectedItem();
         int day = 0;
         switch (daySelected) {
@@ -158,8 +168,19 @@ public class ScheduleManagement {
             default:
                 return;
         }
-        dm.assignSchedule(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
+        boolean assigned = dm.assignSchedule(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
                 table.getSelectionModel().getSelectedItem().getId(), day);
+        if (!assigned)
+            this.createAlert("Ha ocurrido un error de servidor");
+    }
+
+    private void createAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Ha ocurrido un error");
+        alert.setContentText(message);
+        alert.showAndWait();
+
     }
 
     public void switchToSecomdary() throws IOException {
