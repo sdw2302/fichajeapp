@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -50,14 +51,7 @@ public class CreateWorker {
     TableColumn<Worker, String> EmpresaResponsable;
 
     @FXML
-    MenuButton optionMenu;
-    @FXML
-    MenuItem FicharMenu;
-    @FXML
-    MenuItem CreateWorkerMenu;
-
-    @FXML
-    Button CreateWorkerBtn;
+    ImageView logoutImg;
 
     DataManagement dm = new DataManagement();
 
@@ -79,17 +73,21 @@ public class CreateWorker {
 
     }
 
-    // public void switchToTimeSigning() throws IOException {
-    // App.setRoot("secondary");
-    // }
+    public void switchToPrimary() throws IOException{
+        App.setRoot("primary");
+    }
 
-    // public void switchToCreateWorker() throws IOException {
-    // App.setRoot("createWorker");
-    // }
+    public void switchToSecomdary() throws IOException {
+        App.setRoot("secondary");
+    }
 
-    // public void switchToScheduleManagement() throws IOException {
-    // App.setRoot("scheduleManagement");
-    // }
+    public void switchToCreateWorker() throws IOException {
+        App.setRoot("createWorker");
+    }
+
+    public void switchToScheduleManagement() throws IOException {
+        App.setRoot("scheduleManagement");
+    }
 
     public void createWorker() {
         if (NIFToAdd.getText().equals("") || NombreToAdd.getText().equals("") || ApellidoToAdd.getText().equals("")
@@ -117,18 +115,6 @@ public class CreateWorker {
             this.createAlert("Ha ocurrido un error de servidor");
         tableWorkers.getItems().clear();
         tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
-    }
-
-    public void switchToSecomdary() throws IOException {
-        App.setRoot("secondary");
-    }
-
-    public void switchToCreateWorker() throws IOException {
-        App.setRoot("createWorker");
-    }
-
-    public void switchToScheduleManagement() throws IOException {
-        App.setRoot("scheduleManagement");
     }
 
     private void createAlert(String message) {

@@ -1,14 +1,22 @@
-/* .table-view {
-    -fx-background-color: #e32555;
-    -fx-font-size: 14px;
-    -fx-padding: 5px;
-    -fx-border-radius: 5px;
-    -fx-border-color: white;
-    -fx-border-width: 2px;
-} */
 #PanelFichar{
     
     -fx-background-color: white;
+}
+
+.option-menu{
+  -fx-background-color: black;
+}
+
+.button-menu{
+  -fx-text-fill: white;
+  -fx-background-color: black;
+}
+
+.button-menu:hover {
+  -fx-background-color: red;
+  -fx-border-color: blue;
+  -fx-border-radius: 5;
+  -fx-text-fill: blue;
 }
 
 .button{
@@ -23,6 +31,28 @@
   -fx-text-fill: black;
 }
 
+.button-menu{
+  -fx-text-fill: white;
+  -fx-background-color: black;
+  -fx-font-size: 15;
+}
+
+.button-menu:hover {
+  -fx-background-color: rgb(54, 54, 54);
+  -fx-border-color: rgb(54, 54, 54);
+  -fx-border-radius: 0;
+  -fx-text-fill: white;
+}
+
+.image{
+  -fx-background-color: rgb(54, 54, 54);
+  -fx-border-color: rgb(54, 54, 54);
+  -fx-border-radius: 0;
+  -fx-text-fill: white;
+}
+
+
+
 .text-field{
     -fx-background-color: transparent;
     -fx-border-color: black;
@@ -36,10 +66,8 @@
 
 }
 
-.btn:hover {
-  -fx-cursor: hand;
-  -fx-background-color: transparent;
-}
+
+
 .table-view {
   /*-fx-background-color: #651fff;*/
   -fx-background-color: black;

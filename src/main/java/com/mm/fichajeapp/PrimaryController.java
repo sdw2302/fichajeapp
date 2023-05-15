@@ -30,8 +30,8 @@ public class PrimaryController {
 
     @FXML
     public void login() throws SQLException, IOException {
-        user.setText("administrador");
-        password.setText("administrador");
+        //user.setText("administrador");
+        //password.setText("administrador");
         if (!user.getText().equals("") && !password.getText().equals("")) {
             DbConnection conn = new DbConnection();
             conn.iniciarSesion(user.getText(), password.getText());

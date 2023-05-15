@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="1212.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.PrimaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="1412.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.PrimaryController">
    <children>
-      <TextField fx:id="user" layoutX="532.0" layoutY="319.0" promptText="Usuario" />
-      <TextField fx:id="password" layoutX="532.0" layoutY="362.0" promptText="Contraseña" />
-      <Button fx:id="login" layoutX="532.0" layoutY="403.0" mnemonicParsing="false" onAction="#login" prefHeight="46.0" prefWidth="151.0" text="Iniciar sesión" textFill="WHITE">
+      <TextField fx:id="user" layoutX="632.0" layoutY="308.0" promptText="Usuario" />
+      <TextField fx:id="password" layoutX="632.0" layoutY="351.0" promptText="Contraseña" />
+      <Button fx:id="login" layoutX="632.0" layoutY="392.0" mnemonicParsing="false" onAction="#login" prefHeight="46.0" prefWidth="151.0" text="Iniciar sesión" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <ImageView fitHeight="168.0" fitWidth="359.0" layoutX="427.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="168.0" fitWidth="359.0" layoutX="527.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/MM_Logo.png" />
          </image>

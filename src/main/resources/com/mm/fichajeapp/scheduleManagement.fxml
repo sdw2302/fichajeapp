@@ -6,32 +6,34 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="1212.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.ScheduleManagement">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="1412.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mm.fichajeapp.ScheduleManagement">
    <children>
-      <TableView fx:id="table" layoutX="185.0" layoutY="42.0" prefHeight="499.0" prefWidth="314.0">
+      <TableView fx:id="table" layoutX="371.0" layoutY="32.0" prefHeight="499.0" prefWidth="314.0">
         <columns>
           <TableColumn fx:id="time_inicio" prefWidth="100.0" text="Hora Inicio" />
           <TableColumn fx:id="time_final" prefWidth="117.0" text="Hora Final" />
             <TableColumn fx:id="time_descanso" prefWidth="96.0" text="Descanso" />
         </columns>
       </TableView>
-      <TextField fx:id="hours_inicio" layoutX="50.0" layoutY="60.0" prefHeight="24.0" prefWidth="48.0" promptText="Hora" />
-      <TextField fx:id="minutes_inicio" layoutX="116.0" layoutY="60.0" prefHeight="24.0" prefWidth="42.0" promptText="Min" />
-      <Label layoutX="14.0" layoutY="64.0" text="Inicio" />
-      <Label layoutX="104.0" layoutY="64.0" text=":" />
-      <TextField fx:id="hours_final" layoutX="50.0" layoutY="92.0" prefHeight="24.0" prefWidth="48.0" promptText="Hora" />
-      <TextField fx:id="minutes_final" layoutX="116.0" layoutY="92.0" prefHeight="24.0" prefWidth="42.0" promptText="Min" />
-      <Label layoutX="14.0" layoutY="96.0" text="Final" />
-      <Label layoutX="104.0" layoutY="96.0" text=":" />
-      <TextField fx:id="hours_descanso" layoutX="50.0" layoutY="122.0" prefHeight="24.0" prefWidth="48.0" promptText="Hora" />
-      <TextField fx:id="minutes_descanso" layoutX="116.0" layoutY="122.0" prefHeight="24.0" prefWidth="42.0" promptText="Min" />
-      <Label layoutX="14.0" layoutY="126.0" text="Desc." />
-      <Label layoutX="104.0" layoutY="126.0" text=":" />
-      <Button fx:id="createScheduleButton" layoutX="42.0" layoutY="166.0" mnemonicParsing="false" onAction="#createSchedule" prefHeight="48.0" prefWidth="113.0" text="Crear Horario" />
-      <TableView fx:id="tableWorkers" layoutX="698.0" layoutY="34.0" prefHeight="499.0" prefWidth="500.0">
+      <TextField fx:id="hours_inicio" layoutX="236.0" layoutY="50.0" prefHeight="24.0" prefWidth="48.0" promptText="Hora" />
+      <TextField fx:id="minutes_inicio" layoutX="302.0" layoutY="50.0" prefHeight="24.0" prefWidth="42.0" promptText="Min" />
+      <Label layoutX="200.0" layoutY="54.0" text="Inicio" />
+      <Label layoutX="290.0" layoutY="54.0" text=":" />
+      <TextField fx:id="hours_final" layoutX="236.0" layoutY="82.0" prefHeight="24.0" prefWidth="48.0" promptText="Hora" />
+      <TextField fx:id="minutes_final" layoutX="302.0" layoutY="82.0" prefHeight="24.0" prefWidth="42.0" promptText="Min" />
+      <Label layoutX="200.0" layoutY="86.0" text="Final" />
+      <Label layoutX="290.0" layoutY="86.0" text=":" />
+      <TextField fx:id="hours_descanso" layoutX="236.0" layoutY="112.0" prefHeight="24.0" prefWidth="48.0" promptText="Hora" />
+      <TextField fx:id="minutes_descanso" layoutX="302.0" layoutY="112.0" prefHeight="24.0" prefWidth="42.0" promptText="Min" />
+      <Label layoutX="200.0" layoutY="116.0" text="Desc." />
+      <Label layoutX="290.0" layoutY="116.0" text=":" />
+      <Button fx:id="createScheduleButton" layoutX="228.0" layoutY="156.0" mnemonicParsing="false" onAction="#createSchedule" prefHeight="48.0" prefWidth="113.0" text="Crear Horario" />
+      <TableView fx:id="tableWorkers" layoutX="884.0" layoutY="24.0" prefHeight="499.0" prefWidth="500.0">
          <columns>
             <TableColumn fx:id="DNI" prefWidth="115.0" text="DNI" />
             <TableColumn fx:id="Nombre" prefWidth="124.0" text="Nombre" />
@@ -39,13 +41,27 @@
             <TableColumn fx:id="Horas_trabajadas" prefWidth="116.0" text="Horas trabajadas" />
          </columns>
       </TableView>
-      <Button fx:id="setScheduleToWorker" layoutX="544.0" layoutY="166.0" mnemonicParsing="false" onAction="#assignSchedule" prefHeight="48.0" prefWidth="113.0" text="Asignar Horario">
+      <Button fx:id="setScheduleToWorker" layoutX="730.0" layoutY="156.0" mnemonicParsing="false" onAction="#assignSchedule" prefHeight="48.0" prefWidth="113.0" text="Asignar Horario">
          <font>
             <Font size="13.0" />
          </font></Button>
-      <ComboBox fx:id="dayOfTheWeek" layoutX="525.0" layoutY="46.0" prefWidth="150.0" />
-      <Button fx:id="SwitchToSecondary" layoutX="35.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchToSecomdary" text="Fichaje" />
-      <Button fx:id="SwitchToCreateWorker" layoutX="6.0" layoutY="299.0" mnemonicParsing="false" onAction="#switchToCreateWorker" text="Gestionar trabajadores" />
-      <Button fx:id="SwitchToScheduleManagement" layoutX="18.0" layoutY="347.0" mnemonicParsing="false" onAction="#switchToScheduleManagement" text="Gestionar horarios" />
+      <ComboBox fx:id="dayOfTheWeek" layoutX="711.0" layoutY="36.0" prefWidth="150.0" />
+      <AnchorPane id="optionMenu" layoutX="-8.0" layoutY="-2.0" prefHeight="558.0" prefWidth="191.0" styleClass="option-menu" stylesheets="@style.css">
+         <children>
+            <Button fx:id="SwitchToSecondary1" layoutX="-1.0" layoutY="130.0" mnemonicParsing="false" onAction="#switchToSecomdary" prefHeight="53.0" prefWidth="192.0" styleClass="button-menu" stylesheets="@style.css" text="Fichaje" />
+            <Button fx:id="SwitchToCreateWorker1" layoutX="-1.0" layoutY="204.0" mnemonicParsing="false" onAction="#switchToCreateWorker" prefHeight="53.0" prefWidth="192.0" styleClass="button-menu" stylesheets="@style.css" text="Gestionar trabajadores" />
+            <Button fx:id="SwitchToScheduleManagement1" layoutX="-1.0" layoutY="283.0" mnemonicParsing="false" onAction="#switchToScheduleManagement" prefHeight="53.0" prefWidth="192.0" styleClass="button-menu" stylesheets="@style.css" text="Gestionar horarios" />
+            <ImageView fitHeight="75.0" fitWidth="174.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/MM_Logo_blanco.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="logoutImg" fitHeight="53.0" fitWidth="52.0" layoutX="7.0" layoutY="492.0" onMouseClicked="#switchToPrimary" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/logout-sign.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -122,17 +122,21 @@ public class ScheduleManagement {
         table.setItems(dm.getTableSchedulesAsList());
     }
 
-    // public void switchToTimeSigning() throws IOException {
-    //     App.setRoot("secondary");
-    // }
+    public void switchToPrimary() throws IOException{
+        App.setRoot("primary");
+    }
 
-    // public void switchToCreateWorker() throws IOException {
-    //     App.setRoot("createWorker");
-    // }
+    public void switchToSecomdary() throws IOException {
+        App.setRoot("secondary");
+    }
 
-    // public void switchToScheduleManagement() throws IOException {
-    //     App.setRoot("scheduleManagement");
-    // }
+    public void switchToCreateWorker() throws IOException {
+        App.setRoot("createWorker");
+    }
+
+    public void switchToScheduleManagement() throws IOException {
+        App.setRoot("scheduleManagement");
+    }
 
     public void assignSchedule() {
         if (table.getSelectionModel().getSelectedItem() == null
@@ -181,17 +185,5 @@ public class ScheduleManagement {
         alert.setContentText(message);
         alert.showAndWait();
 
-    }
-
-    public void switchToSecomdary() throws IOException {
-        App.setRoot("secondary");
-    }
-
-    public void switchToCreateWorker() throws IOException {
-        App.setRoot("createWorker");
-    }
-
-    public void switchToScheduleManagement() throws IOException {
-        App.setRoot("scheduleManagement");
     }
 }

@@ -69,17 +69,21 @@ public class SecondaryController {
         tableWorkers.setItems(dm.getTableWorkersAsList());
     }
 
-    // public void switchToTimeSigning() throws IOException {
-    // App.setRoot("secondary");
-    // }
+    public void switchToPrimary() throws IOException{
+        App.setRoot("primary");
+    }
 
-    // public void switchToCreateWorker() throws IOException {
-    // App.setRoot("createWorker");
-    // }
+    public void switchToSecomdary() throws IOException {
+        App.setRoot("secondary");
+    }
 
-    // public void switchToScheduleManagement() throws IOException {
-    // App.setRoot("scheduleManagement");
-    // }
+    public void switchToCreateWorker() throws IOException {
+        App.setRoot("createWorker");
+    }
+
+    public void switchToScheduleManagement() throws IOException {
+        App.setRoot("scheduleManagement");
+    }
 
     public void loadSchedulesClick() {
         horario.getItems().clear();
@@ -122,18 +126,6 @@ public class SecondaryController {
             this.createAlert("Ha ocurrido un error de servidor");
         tableWorkers.getItems().clear();
         tableWorkers.setItems(dm.getTableWorkersAsList());
-    }
-
-    public void switchToSecomdary() throws IOException {
-        App.setRoot("secondary");
-    }
-
-    public void switchToCreateWorker() throws IOException {
-        App.setRoot("createWorker");
-    }
-
-    public void switchToScheduleManagement() throws IOException {
-        App.setRoot("scheduleManagement");
     }
 
     private void createAlert(String message) {
