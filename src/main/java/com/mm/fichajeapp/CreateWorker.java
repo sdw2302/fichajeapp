@@ -3,11 +3,8 @@ package com.mm.fichajeapp;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -73,7 +70,7 @@ public class CreateWorker {
 
     }
 
-    public void switchToPrimary() throws IOException{
+    public void switchToPrimary() throws IOException {
         App.setRoot("primary");
     }
 
@@ -105,11 +102,8 @@ public class CreateWorker {
     }
 
     public void deleteWorker() {
-
-        if (tableWorkers.getSelectionModel().getSelectedItem() == null) {
-            this.createAlert("Seleccione un trabajador");
+        if (!this.checkIfSelected("Seleccione un trabajador"))
             return;
-        }
         boolean deleted = dm.deleteWorker(tableWorkers.getSelectionModel().getSelectedItem());
         if (!deleted)
             this.createAlert("Ha ocurrido un error de servidor");
@@ -124,5 +118,44 @@ public class CreateWorker {
         alert.setContentText(message);
         alert.showAndWait();
 
+    }
+
+    private boolean checkIfSelected(String msg) {
+        if (tableWorkers.getSelectionModel().getSelectedItem() == null) {
+            this.createAlert(msg);
+            return false;
+        }
+        return true;
+    }
+
+    public void modifyWorker() {
+        if (!this.checkIfSelected("Seleccione un trabajador"))
+            return;
+        if (NIFToAdd.getText().isEmpty() && NombreToAdd.getText().isEmpty() && ApellidoToAdd.getText().isEmpty()
+                && FechaNacimientoToAdd.getValue() == null
+                && EmpresaResponsableToAdd.getSelectionModel().getSelectedItem() == null) {
+            this.createAlert("Rellene o seleccione al menos un dato para modificar el trabajador");
+            return;
+        }
+        if (!dm.modifyWorker(
+                NombreToAdd.getText().isEmpty()
+                        ? tableWorkers.getSelectionModel().getSelectedItem().getNombre_trabajador()
+                        : NombreToAdd.getText(),
+                ApellidoToAdd.getText().isEmpty()
+                        ? tableWorkers.getSelectionModel().getSelectedItem().getApellido_trabajador()
+                        : ApellidoToAdd.getText(),
+                NIFToAdd.getText().isEmpty() ? tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador()
+                        : NIFToAdd.getText(),
+                FechaNacimientoToAdd.getValue() == null
+                        ? tableWorkers.getSelectionModel().getSelectedItem().getFecha_nacimiento()
+                        : FechaNacimientoToAdd.getValue(),
+                EmpresaResponsableToAdd.getSelectionModel().getSelectedItem() == null
+                        ? tableWorkers.getSelectionModel().getSelectedItem().getEmpresa_responsable()
+                        : EmpresaResponsableToAdd.getSelectionModel().getSelectedItem(),
+                tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador()))
+            this.createAlert("Ha ocurrido un error de servidor");
+
+        tableWorkers.getItems().clear();
+        tableWorkers.setItems(dm.getTableWorkersCompleteAsList());
     }
 }

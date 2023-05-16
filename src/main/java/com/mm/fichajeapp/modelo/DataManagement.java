@@ -127,7 +127,7 @@ public class DataManagement {
     public ObservableList<String> getNameCompanies() {
 
         ObservableList<String> empresas = FXCollections.observableArrayList();
-        String sql = "SELECT nombre_empresa from empresa;";
+        String sql = "select nombre_empresa from empresa;";
 
         DbConnection conn = new DbConnection();
         try {
@@ -145,7 +145,7 @@ public class DataManagement {
     }
 
     public boolean deleteWorker(Worker worker) {
-        String sql = "DELETE FROM trabajador WHERE dni_trabajador = '";
+        String sql = "delete from trabajador where dni_trabajador = '";
         DbConnection conn = new DbConnection();
 
         try {
@@ -212,7 +212,7 @@ public class DataManagement {
 
     public boolean checkDni(String DniToCheck) {
 
-        String DNIs = "";
+        String dnis = "";
         String sql = "select dni_trabajador from trabajador";
 
         DbConnection conn = new DbConnection();
@@ -222,14 +222,14 @@ public class DataManagement {
             ResultSet resultSet = ordre.executeQuery(sql);
 
             while (resultSet.next()) {
-                DNIs += ((resultSet.getString(1) + ";"));
+                dnis += ((resultSet.getString(1) + ";"));
             }
 
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
 
-        String[] dnisArray = DNIs.split(";");
+        String[] dnisArray = dnis.split(";");
 
         for (String dni : dnisArray) {
             if (dni.equals(DniToCheck))
@@ -286,15 +286,8 @@ public class DataManagement {
     public boolean createSchedule(String hora_inicio, String hora_final, String descanso) {
         String sql = "insert into horario values (" + getAvailableScheduleId() + ", " + hora_inicio + ", " + hora_final
                 + ", " + descanso + ")";
-        DbConnection conn = new DbConnection();
 
-        try {
-            conn.getConn().createStatement().execute(sql);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-            return false;
-        }
-        return true;
+        return this.exec(sql);
     }
 
     public int getAvailableScheduleAssignmentId() {
@@ -322,6 +315,22 @@ public class DataManagement {
         String sql = "insert into horario_trabajador values (" + this.getAvailableScheduleAssignmentId()
                 + ", (select id_trabajador from trabajador where dni_trabajador = '" + dni + "'), " + id_horario + ", "
                 + id_dia + ")";
+
+        return this.exec(sql);
+    }
+
+    public boolean modifyWorker(String name, String surname, String new_id, LocalDate birthday, String company,
+            String actual_id) {
+        String sql = "update trabajador set nombre_trabajador = '" + name + "', apellido_trabajador = '" + surname
+                + "', dni_trabajador = '" + new_id + "', fecha_nacimiento_trabajador = '" + birthday.getYear() + "-"
+                + birthday.getMonthValue() + "-" + birthday.getDayOfMonth()
+                + "', id_empresa = (select id_empresa from empresa where nombre_empresa = '" + company
+                + "') where dni_trabajador = '" + actual_id + "';";
+
+        return this.exec(sql);
+    }
+
+    private boolean exec(String sql) {
         DbConnection conn = new DbConnection();
 
         try {
@@ -330,6 +339,7 @@ public class DataManagement {
             System.out.println("Error: " + e.getMessage());
             return false;
         }
+
         return true;
     }
 }
