@@ -177,7 +177,7 @@ public class DataManagement {
                 sql = "insert into trabajador values (" + this.getAvailableWorkers() + ", '" +
                         nombre + "', '" + apellido + "', '" + dni + "', '" + fecha_nacimiento.getYear() + "-"
                         + fecha_nacimiento.getMonthValue() + "-" + fecha_nacimiento.getDayOfMonth() + "', " + id
-                        + ", null);";
+                        + ", 0.00);";
                 conn.getConn().createStatement().execute(sql);
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
