@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 12, 2023 at 09:45 AM
+-- Host: localhost
+-- Generation Time: May 16, 2023 at 09:42 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -83,7 +83,7 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`id_empresa`, `nombre_empresa`, `nif_empresa`, `ciudad_empresa`, `numero_trabajadores`) VALUES
-(1, 'Acme Inc.', 'A12345678', 'Madrid', 5),
+(1, 'Acme Inc.', 'A12345678', 'Madrid', 4),
 (2, 'Globex Corporation', 'G23456789', 'Barcelona', 2),
 (3, 'Umbrella Corporation', 'U34567890', 'Valencia', 3);
 
@@ -104,13 +104,24 @@ CREATE TABLE `fichaje` (
 --
 
 INSERT INTO `fichaje` (`id_fichaje`, `id_horario_trabajador`, `horas_trabajadas_fichaje`) VALUES
+(0, 5, 3.00),
 (1, 1, 6.50),
 (2, 2, 7.50),
 (3, 3, 8.00),
 (4, 4, 5.00),
+(5, 2, 2.50),
 (6, 3, 6.50),
-(7, 2, 1.75),
-(8, 5, 1.75);
+(7, 6, 3.00),
+(8, 5, 4.00),
+(9, 2, 3.50),
+(10, 4, 2.50),
+(11, 6, 3.25),
+(12, 5, 3.50),
+(13, 6, 1.75),
+(14, 4, 1.50),
+(15, 7, 3.50),
+(16, 9, 6.00),
+(17, 10, 4.50);
 
 --
 -- Triggers `fichaje`
@@ -141,12 +152,14 @@ CREATE TABLE `horario` (
 
 INSERT INTO `horario` (`id_horario`, `hora_inicio_horario`, `hora_final_horario`, `tiempo_descanso_horario`) VALUES
 (1, 8.00, 14.00, 1.00),
-(2, 9.00, 17.00, 17.00),
+(2, 9.00, 17.00, 2.00),
 (3, 14.00, 22.00, 1.00),
-(4, 8.00, 14.50, 14.50),
-(5, 14.50, 20.00, 20.00),
+(4, 8.00, 14.50, 1.50),
+(5, 14.50, 20.00, 2.00),
 (6, 8.00, 17.00, 1.00),
-(7, 7.00, 12.50, 1.00);
+(7, 9.00, 15.00, 1.50),
+(8, 8.00, 15.00, 0.50),
+(9, 7.50, 13.50, 0.50);
 
 -- --------------------------------------------------------
 
@@ -172,7 +185,11 @@ INSERT INTO `horario_trabajador` (`id_horario_trabajador`, `id_trabajador`, `id_
 (4, 4, 3, 1),
 (5, 5, 4, 2),
 (6, 6, 5, 3),
-(7, 9, 7, 1);
+(7, 7, 6, 1),
+(8, 7, 4, 5),
+(9, 9, 2, 4),
+(10, 10, 7, 6),
+(11, 5, 6, 6);
 
 -- --------------------------------------------------------
 
@@ -187,7 +204,7 @@ CREATE TABLE `trabajador` (
   `dni_trabajador` varchar(12) DEFAULT NULL,
   `fecha_nacimiento_trabajador` date DEFAULT NULL,
   `id_empresa` int(8) DEFAULT NULL,
-  `horas_fichadas_trabajador` double(10,2) DEFAULT 0.00
+  `horas_fichadas_trabajador` double(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -196,14 +213,14 @@ CREATE TABLE `trabajador` (
 
 INSERT INTO `trabajador` (`id_trabajador`, `nombre_trabajador`, `apellido_trabajador`, `dni_trabajador`, `fecha_nacimiento_trabajador`, `id_empresa`, `horas_fichadas_trabajador`) VALUES
 (1, 'Juan', 'Pérez García', '12345678A', '1990-05-12', 1, 6.50),
-(2, 'María', 'González López', '23456789B', '1995-07-25', 2, 9.25),
+(2, 'María', 'González López', '23456789B', '1995-07-25', 2, 13.50),
 (3, 'Pedro', 'Sánchez Martínez', '34567890C', '1988-03-17', 3, 14.50),
-(4, 'Sara', 'Hernández', '55544411J', '1995-09-12', 1, 5.00),
-(5, 'Juan', 'Ramírez', '66655522K', '1992-04-20', 1, 1.75),
-(6, 'María', 'García', '77766633L', '1989-12-31', 2, 0.00),
-(7, 'Pedro', 'Puentes Puyalto', '84653876F', '1989-03-11', 3, 0.00),
-(9, 'Javier', 'Lopez Calderon', '14773234W', '1989-08-15', 1, 0.00),
-(10, 'Miguel', 'Zambrano Contreras', '72345678A', '2004-05-01', 3, 0.00);
+(4, 'Sara', 'Hernández', '55544411J', '1995-09-12', 1, 9.00),
+(5, 'Juan', 'Ramírez', '66655522K', '1992-04-20', 1, 10.50),
+(6, 'María', 'García', '77766633L', '1989-12-31', 2, 8.00),
+(7, 'Pedro', 'Puentes Puyalto', '84653876F', '1989-03-11', 3, 3.50),
+(9, 'Javier', 'Lopez Calderon', '14773234W', '1989-08-15', 1, 6.00),
+(10, 'Miguel', 'Zambrano Contreras', '72345678A', '2004-05-01', 3, 4.50);
 
 --
 -- Triggers `trabajador`
@@ -273,7 +290,8 @@ ALTER TABLE `dia`
 -- Indexes for table `empresa`
 --
 ALTER TABLE `empresa`
-  ADD PRIMARY KEY (`id_empresa`);
+  ADD PRIMARY KEY (`id_empresa`),
+  ADD UNIQUE KEY `nif_empresa` (`nif_empresa`);
 
 --
 -- Indexes for table `fichaje`
@@ -302,6 +320,7 @@ ALTER TABLE `horario_trabajador`
 --
 ALTER TABLE `trabajador`
   ADD PRIMARY KEY (`id_trabajador`),
+  ADD UNIQUE KEY `dni_trabajador` (`dni_trabajador`),
   ADD KEY `id_empresa` (`id_empresa`);
 
 --
