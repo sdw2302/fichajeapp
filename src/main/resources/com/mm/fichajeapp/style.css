@@ -90,5 +90,15 @@
   -fx-text-fill: white;
 }
 
+.table-row-cell:selected {
+  -fx-background-color: rgb(139, 139, 139);
+  -fx-text-fill: white;
+  }
+  
+  .table-row-cell:hover {
+  -fx-background-color: rgb(139, 139, 139);
+  -fx-text-fill: white;
+  }
+
 
 
