@@ -76,5 +76,20 @@ public class Worker {
     public void setId_trabajador(int id_trabajador) {
         this.id_trabajador = id_trabajador;
     }
+    public void setDni_trabajador(String dni_trabajador) {
+        this.dni_trabajador = dni_trabajador;
+    }
+    public void setNombre_trabajador(String nombre_trabajador) {
+        this.nombre_trabajador = nombre_trabajador;
+    }
+    public void setApellido_trabajador(String apellido_trabajador) {
+        this.apellido_trabajador = apellido_trabajador;
+    }
+    public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+    public void setHoras_fichadas_trabajador(Double horas_fichadas_trabajador) {
+        this.horas_fichadas_trabajador = horas_fichadas_trabajador;
+    }
 
 }
