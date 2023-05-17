@@ -69,71 +69,99 @@ public class SecondaryController {
         tableWorkers.setItems(dm.getTableWorkersAsList());
     }
 
-    public void switchToPrimary() throws IOException{
+    public void switchToPrimary() throws IOException {
+        // Switches to the primary view.
         App.setRoot("primary");
     }
 
     public void switchToSecomdary() throws IOException {
+        // Switches to the secondary view.
         App.setRoot("secondary");
     }
 
     public void switchToCreateWorker() throws IOException {
+        // Switches to the CreateWorker view.
         App.setRoot("createWorker");
     }
 
     public void switchToScheduleManagement() throws IOException {
+        // Switches to the ScheduleManagement view.
         App.setRoot("scheduleManagement");
     }
 
     public void loadSchedulesClick() {
+        // Clear the items in the horario ComboBox
         horario.getItems().clear();
+    
+        // Get the selected worker's NIF
         String nif = tableWorkers.getSelectionModel().getSelectedItem() != null
                 ? tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador()
                 : "";
-        if (nif != "") {
-            String[] schedules = dm.loadSchedules(nif).split(";");
-            for (String string : schedules)
-                if (string != "")
-                    horario.getItems().add(string);
+    
+        // If a worker is selected, load their schedules
+        if (!nif.isEmpty()) {
+            // Retrieve the schedules as a string from the data manager
+            String schedulesString = dm.loadSchedules(nif);
+    
+            // Split the schedules string by ';' to get individual schedules
+            String[] schedules = schedulesString.split(";");
+    
+            // Add non-empty schedules to the horario ComboBox
+            for (String schedule : schedules) {
+                if (!schedule.isEmpty()) {
+                    horario.getItems().add(schedule);
+                }
+            }
         }
     }
+    
 
     public void signTimeWorked() {
+        // Check if any required fields are empty
         if (horas.getText().isEmpty() || minutos.getText().isEmpty()
                 || horario.getSelectionModel().getSelectedItem() == null) {
             this.createAlert("Faltan datos");
             return;
         }
-        int hours, minutes;
-        hours = Integer.parseInt(horas.getText()) <= 24 && Integer.parseInt(horas.getText()) >= 0
-                ? Integer.parseInt(horas.getText())
-                : -1;
-        minutes = Integer.parseInt(minutos.getText()) <= 60 && Integer.parseInt(minutos.getText()) >= 0
-                ? Integer.parseInt(minutos.getText())
-                : -1;
-
-        String time;
-        if (hours == -1 || minutes == -1 || (hours == 0 && minutes == 0)) {
-            this.createAlert("Valores no validos");
+    
+        // Parse hours and minutes from text fields
+        int hours = Integer.parseInt(horas.getText());
+        int minutes = Integer.parseInt(minutos.getText());
+    
+        // Check if the entered values are valid
+        if (hours < 0 || hours > 24 || minutes < 0 || minutes > 60 || (hours == 0 && minutes == 0)) {
+            this.createAlert("Valores no válidos");
             return;
         }
-        time = String.valueOf(hours);
+    
+        // Convert hours and minutes to a time string format
+        String time = String.valueOf(hours);
         time += minutes >= 45 ? ".75" : minutes >= 30 ? ".50" : minutes >= 15 ? ".25" : "";
-
+    
+        // Sign the time worked for the selected worker and schedule
         boolean signed = dm.signTime(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
                 Integer.parseInt(String.valueOf(horario.getSelectionModel().getSelectedItem().charAt(0))), time);
-        if (!signed)
+    
+        // Show an alert if signing failed
+        if (!signed) {
             this.createAlert("Ha ocurrido un error de servidor");
+        }
+    
+        // Clear and update the table of workers
         tableWorkers.getItems().clear();
         tableWorkers.setItems(dm.getTableWorkersAsList());
     }
+    
 
     private void createAlert(String message) {
+        // Create an error alert
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Ha ocurrido un error");
         alert.setContentText(message);
+    
+        // Show the alert and wait for user confirmation
         alert.showAndWait();
-
     }
+    
 }
