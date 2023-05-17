@@ -32,12 +32,16 @@ public class Schedule {
     public void setId(int id) {
         this.id = id;
     }
+
     public void setHora_inicio(String hora_inicio) {
         this.hora_inicio = hora_inicio;
     }
+
     public void setHora_final(String hora_final) {
         this.hora_final = hora_final;
     }
+
+    
     public void setDescanso(String descanso) {
         this.descanso = descanso;
     }

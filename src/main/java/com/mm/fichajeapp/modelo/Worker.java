@@ -11,6 +11,8 @@ public class Worker {
     private Double horas_fichadas_trabajador;
     private String empresa_responsable;
 
+    
+    // Constructor to DM function getTableWorkersAsList()//
     public Worker(String dni_trabajador, String nombre_trabajador, String apellido_trabajador,
             Double horas_fichadas_trabajador) {
         this.dni_trabajador = dni_trabajador;
@@ -19,6 +21,7 @@ public class Worker {
         this.horas_fichadas_trabajador = horas_fichadas_trabajador;
     }
 
+    // Constructor to DM function createWorker()//
     public Worker(String dni_trabajador, String nombre_trabajador, String apellido_trabajador,
             LocalDate fecha_nacimiento, String empresa_responsable) {
         this.dni_trabajador = dni_trabajador;
@@ -28,7 +31,7 @@ public class Worker {
         this.empresa_responsable = empresa_responsable;
     }
 
-
+    // Constructor to DM function getTableWorkersCompleteAsList()//
     public Worker(int id_trabajador, String dni_trabajador, String nombre_trabajador, String apellido_trabajador, LocalDate fecha_nacimiento, Double horas_fichadas_trabajador, String empresa_responsable) {
         this.id_trabajador = id_trabajador;
         this.dni_trabajador = dni_trabajador;
