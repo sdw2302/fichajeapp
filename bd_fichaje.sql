@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 16, 2023 at 09:42 AM
+-- Generation Time: May 17, 2023 at 12:36 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -119,9 +119,7 @@ INSERT INTO `fichaje` (`id_fichaje`, `id_horario_trabajador`, `horas_trabajadas_
 (12, 5, 3.50),
 (13, 6, 1.75),
 (14, 4, 1.50),
-(15, 7, 3.50),
-(16, 9, 6.00),
-(17, 10, 4.50);
+(15, 7, 3.50);
 
 --
 -- Triggers `fichaje`
@@ -187,8 +185,6 @@ INSERT INTO `horario_trabajador` (`id_horario_trabajador`, `id_trabajador`, `id_
 (6, 6, 5, 3),
 (7, 7, 6, 1),
 (8, 7, 4, 5),
-(9, 9, 2, 4),
-(10, 10, 7, 6),
 (11, 5, 6, 6);
 
 -- --------------------------------------------------------
@@ -218,9 +214,7 @@ INSERT INTO `trabajador` (`id_trabajador`, `nombre_trabajador`, `apellido_trabaj
 (4, 'Sara', 'Hernández', '55544411J', '1995-09-12', 1, 9.00),
 (5, 'Juan', 'Ramírez', '66655522K', '1992-04-20', 1, 10.50),
 (6, 'María', 'García', '77766633L', '1989-12-31', 2, 8.00),
-(7, 'Pedro', 'Puentes Puyalto', '84653876F', '1989-03-11', 3, 3.50),
-(9, 'Javier', 'Lopez Calderon', '14773234W', '1989-08-15', 1, 6.00),
-(10, 'Miguel', 'Zambrano Contreras', '72345678A', '2004-05-01', 3, 4.50);
+(7, 'Pedro', 'Puentes Puyalto', '84653876F', '1989-03-11', 3, 3.50);
 
 --
 -- Triggers `trabajador`
@@ -331,15 +325,15 @@ ALTER TABLE `trabajador`
 -- Constraints for table `fichaje`
 --
 ALTER TABLE `fichaje`
-  ADD CONSTRAINT `fichaje_ibfk_1` FOREIGN KEY (`id_horario_trabajador`) REFERENCES `horario_trabajador` (`id_horario_trabajador`);
+  ADD CONSTRAINT `fichaje_ibfk_1` FOREIGN KEY (`id_horario_trabajador`) REFERENCES `horario_trabajador` (`id_horario_trabajador`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `horario_trabajador`
 --
 ALTER TABLE `horario_trabajador`
-  ADD CONSTRAINT `horario_trabajador_ibfk_1` FOREIGN KEY (`id_trabajador`) REFERENCES `trabajador` (`id_trabajador`),
   ADD CONSTRAINT `horario_trabajador_ibfk_2` FOREIGN KEY (`id_horario`) REFERENCES `horario` (`id_horario`),
-  ADD CONSTRAINT `horario_trabajador_ibfk_3` FOREIGN KEY (`id_dia`) REFERENCES `dia` (`id_dia`);
+  ADD CONSTRAINT `horario_trabajador_ibfk_3` FOREIGN KEY (`id_dia`) REFERENCES `dia` (`id_dia`),
+  ADD CONSTRAINT `horario_trabajador_ibfk_4` FOREIGN KEY (`id_trabajador`) REFERENCES `trabajador` (`id_trabajador`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `trabajador`
