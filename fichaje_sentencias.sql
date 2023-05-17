@@ -197,3 +197,20 @@ DELIMITER $$
 			CALL sumar_horas_fichadas(NEW.id_horario_trabajador);
 		END$$
 DELIMITER ;
+
+-- Problema al eliminar trabajadores --
+
+-- Drop the existing foreign key constraint
+ALTER TABLE horario_trabajador
+DROP FOREIGN KEY horario_trabajador_ibfk_1;
+
+-- Add the new foreign key constraint with ON DELETE CASCADE
+ALTER TABLE horario_trabajador
+ADD FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador) ON DELETE CASCADE;
+-- Drop the existing foreign key constraint
+ALTER TABLE fichaje
+DROP FOREIGN KEY fichaje_ibfk_1;
+
+-- Add the new foreign key constraint with ON DELETE CASCADE
+ALTER TABLE fichaje
+ADD FOREIGN KEY (id_horario_trabajador) REFERENCES horario_trabajador(id_horario_trabajador) ON DELETE CASCADE;
