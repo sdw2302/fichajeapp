@@ -32,17 +32,13 @@ public class PrimaryController {
     public void login() throws SQLException, IOException {
         //user.setText("administrador");
         //password.setText("administrador");
+        
         if (!user.getText().equals("") && !password.getText().equals("")) {
-            DbConnection conn = new DbConnection();
-            conn.iniciarSesion(user.getText(), password.getText());
+            DbConnection conn = new DbConnection(); // Create a new database connection
+            conn.iniciarSesion(user.getText(), password.getText()); // Attempt to establish a connection
 
             if (conn.getConnection()) {
-                // Alert alerta = new Alert(AlertType.INFORMATION);
-                // alerta.setTitle("Inici de sessió correcte");
-                // alerta.setHeaderText("Benvingut " + user.getText());
-                // alerta.setContentText("Que tinguis un bon dia!.");
-                // alerta.showAndWait();
-                App.setRoot("secondary");
+                App.setRoot("secondary"); // If the connection is successful, switch to the secondary view
 
             } else {
                 Alert alerta = new Alert(AlertType.INFORMATION);
@@ -50,8 +46,8 @@ public class PrimaryController {
                 alerta.setHeaderText("No s'ha pogut iniciar sessió");
                 alerta.setContentText("Prova introduïnt un usuari i una contrasenya correcta.");
                 alerta.showAndWait();
-                user.setText("");
-                password.setText("");
+                user.setText(""); // Clear the username field
+                password.setText(""); // Clear the password field
             }
         } else {
             Alert alerta = new Alert(AlertType.INFORMATION);
@@ -60,8 +56,8 @@ public class PrimaryController {
             alerta.setContentText("No has introducido un usuario o contraseña.");
             alerta.showAndWait();
         }
-
     }
-
-
 }
+
+
+
