@@ -70,13 +70,11 @@ public class ScheduleManagement {
     DataManagement dm = new DataManagement();
 
     public void initialize() {
-        // Set cell value factories for schedule table
         time_inicio.setCellValueFactory(new PropertyValueFactory<Schedule, String>("hora_inicio"));
         time_final.setCellValueFactory(new PropertyValueFactory<Schedule, String>("hora_final"));
         time_descanso.setCellValueFactory(new PropertyValueFactory<Schedule, String>("descanso"));
         table.setItems(dm.getTableSchedulesAsList());
 
-        // Set cell value factories for worker table
         DNI.setCellValueFactory(new PropertyValueFactory<Worker, String>("dni_trabajador"));
         Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre_trabajador"));
         Apellido.setCellValueFactory(new PropertyValueFactory<>("apellido_trabajador"));
@@ -87,43 +85,20 @@ public class ScheduleManagement {
         dayOfTheWeek.getItems().addAll(days);
     }
 
-    public void switchToPrimary() throws IOException{
-        // Switch to the primary view
-        App.setRoot("primary");
-    }
-
-    public void switchToSecomdary() throws IOException {
-        // Switch to the secondary view
-        App.setRoot("secondary");
-    }
-
-    public void switchToCreateWorker() throws IOException {
-        // Switch to the createWorker view
-        App.setRoot("createWorker");
-    }
-
-    public void switchToScheduleManagement() throws IOException {
-        // Switch to the scheduleManagement view
-        App.setRoot("scheduleManagement");
-    }
-
     public void createSchedule() {
-        // Check if all fields are filled
-        if (hours_inicio.getText().isEmpty() || minutes_inicio.getText().isEmpty()
-                || hours_final.getText().isEmpty() || minutes_final.getText().isEmpty()
-                || hours_descanso.getText().isEmpty() || minutes_descanso.getText().isEmpty()) {
+        if (hours_inicio.getText() == "" || minutes_inicio.getText() == "" || hours_final.getText() == ""
+                || minutes_final.getText() == "" || hours_descanso.getText() == ""
+                || minutes_descanso.getText() == "") {
             this.createAlert("Faltan datos");
             return;
         }
-        // Parse input values to integers
-        int checkhours_inicio = Integer.parseInt(hours_inicio.getText());
-        int checkminutes_inicio = Integer.parseInt(minutes_inicio.getText());
-        int checkhours_final = Integer.parseInt(hours_final.getText());
-        int checkminutes_final = Integer.parseInt(minutes_final.getText());
-        int checkhours_descanso = Integer.parseInt(hours_descanso.getText());
-        int checkminutes_descanso = Integer.parseInt(minutes_descanso.getText());
+        int checkhours_inicio = Integer.parseInt(hours_inicio.getText()),
+                checkminutes_inicio = Integer.parseInt(minutes_inicio.getText()),
+                checkhours_final = Integer.parseInt(hours_final.getText()),
+                checkminutes_final = Integer.parseInt(minutes_final.getText()),
+                checkhours_descanso = Integer.parseInt(hours_descanso.getText()),
+                checkminutes_descanso = Integer.parseInt(minutes_descanso.getText());
 
-        // Check if values are within valid range
         if (checkhours_inicio < 0 || checkhours_inicio >= 24 || checkminutes_inicio < 0 || checkminutes_inicio >= 60
                 || checkhours_final < 0 || checkhours_final >= 24 || checkminutes_final < 0 || checkminutes_final >= 60
                 || checkhours_descanso < 0 || checkhours_descanso >= 24 || checkminutes_descanso < 0
@@ -131,7 +106,6 @@ public class ScheduleManagement {
             this.createAlert("Valores no validos");
             return;
         }
-        // Construct time strings based on input values
         String inicioTime = hours_inicio.getText();
         inicioTime += checkminutes_inicio >= 45 ? ".75"
                 : checkminutes_inicio >= 30 ? ".50" : checkminutes_inicio >= 15 ? ".25" : ".00";
@@ -141,26 +115,36 @@ public class ScheduleManagement {
         String descansoTime = hours_descanso.getText();
         descansoTime += checkminutes_descanso >= 45 ? ".75"
                 : checkminutes_descanso >= 30 ? ".50" : checkminutes_descanso >= 15 ? ".25" : ".00";
-        // Create the schedule
         boolean created = dm.createSchedule(inicioTime, finalTime, descansoTime);
         if (!created)
             this.createAlert("Ha ocurrido un error de servidor");
-        // Clear and update the schedule table
         table.getItems().clear();
         table.setItems(dm.getTableSchedulesAsList());
     }
 
-    
+    public void switchToPrimary() throws IOException{
+        App.setRoot("primary");
+    }
+
+    public void switchToSecomdary() throws IOException {
+        App.setRoot("secondary");
+    }
+
+    public void switchToCreateWorker() throws IOException {
+        App.setRoot("createWorker");
+    }
+
+    public void switchToScheduleManagement() throws IOException {
+        App.setRoot("scheduleManagement");
+    }
 
     public void assignSchedule() {
-        // Check if all necessary selections are made
         if (table.getSelectionModel().getSelectedItem() == null
                 || tableWorkers.getSelectionModel().getSelectedItem() == null
                 || dayOfTheWeek.getSelectionModel().getSelectedItem() == null) {
             this.createAlert("Faltan datos");
             return;
         }
-        // Get the selected day of the week and convert it to a numerical value
         String daySelected = dayOfTheWeek.getSelectionModel().getSelectedItem();
         int day = 0;
         switch (daySelected) {
@@ -188,20 +172,18 @@ public class ScheduleManagement {
             default:
                 return;
         }
-        // Assign the selected schedule to the selected worker on the specified day
-        boolean assigned = dm.assignSchedule(
-                tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
+        boolean assigned = dm.assignSchedule(tableWorkers.getSelectionModel().getSelectedItem().getDni_trabajador(),
                 table.getSelectionModel().getSelectedItem().getId(), day);
         if (!assigned)
             this.createAlert("Ha ocurrido un error de servidor");
     }
-    
+
     private void createAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Ha ocurrido un error");
         alert.setContentText(message);
         alert.showAndWait();
+
     }
-    
 }
